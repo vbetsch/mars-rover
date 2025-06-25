@@ -76,4 +76,14 @@ describe('Rover', () => {
     });
     expect(() => rover.moveForward()).toThrow(errorMessage);
   });
+  it('Rover - should turn left - from south to east', () => {
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.SOUTH,
+    });
+
+    rover.turnLeft();
+
+    expect(rover.direction).toStrictEqual(DirectionsEnum.EAST);
+  });
 });
