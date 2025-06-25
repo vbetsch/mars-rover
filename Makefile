@@ -15,7 +15,10 @@ lint: node_modules
 format: node_modules
 	npm run format
 
-.PHONY: start tests lint format
+build: node_modules
+	npm run build
+
+.PHONY: start tests lint format build
 
 # Aliases
 ci: lint tests
