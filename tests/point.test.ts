@@ -2,11 +2,10 @@ import { Point } from '../src/point';
 
 describe('Point', () => {
   it('Point - should have x and y', () => {
-    const x: number = 0;
-    const y: number = 0;
-    const point: Point.Class = new Point.Class({ x: x, y: y });
+    const params: Point.Type = { x: 0, y: 0 };
+    const point: Point.Class = new Point.Class(params);
 
-    expect(point.x).toBe(x);
-    expect(point.y).toBe(y);
+    expect(point.x).toBe(params.x);
+    expect(point.y).toBe(params.y);
   });
 });
