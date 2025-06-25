@@ -1,16 +1,16 @@
 import { Point } from '@app/domain/Point';
-import { CardinalPointsEnum } from '@app/enums/cardinal-points.enum';
 import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
+import { CardinalPoint } from './CardinalPoint';
 
 export namespace Rover {
   export type Type = {
     readonly startingPoint: Point.Class;
-    readonly direction: CardinalPointsEnum;
+    readonly direction: CardinalPoint.Enum;
   };
 
   export class Class {
     private _currentPosition: Point.Class;
-    private _currentDirection: CardinalPointsEnum;
+    private _currentDirection: CardinalPoint.Enum;
 
     public constructor(params: Type) {
       this._currentPosition = params.startingPoint;
@@ -21,31 +21,31 @@ export namespace Rover {
       return this._currentPosition;
     }
 
-    public get direction(): CardinalPointsEnum {
+    public get direction(): CardinalPoint.Enum {
       return this._currentDirection;
     }
 
     public moveForward(): void {
       switch (this._currentDirection) {
-        case CardinalPointsEnum.NORTH:
+        case CardinalPoint.Enum.NORTH:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x,
             y: this._currentPosition.y + 1,
           });
           break;
-        case CardinalPointsEnum.EAST:
+        case CardinalPoint.Enum.EAST:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x + 1,
             y: this._currentPosition.y,
           });
           break;
-        case CardinalPointsEnum.SOUTH:
+        case CardinalPoint.Enum.SOUTH:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x,
             y: this._currentPosition.y - 1,
           });
           break;
-        case CardinalPointsEnum.WEST:
+        case CardinalPoint.Enum.WEST:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x - 1,
             y: this._currentPosition.y,
@@ -58,17 +58,17 @@ export namespace Rover {
 
     public turnLeft(): void {
       switch (this._currentDirection) {
-        case CardinalPointsEnum.NORTH:
-          this._currentDirection = CardinalPointsEnum.WEST;
+        case CardinalPoint.Enum.NORTH:
+          this._currentDirection = CardinalPoint.Enum.WEST;
           break;
-        case CardinalPointsEnum.EAST:
-          this._currentDirection = CardinalPointsEnum.NORTH;
+        case CardinalPoint.Enum.EAST:
+          this._currentDirection = CardinalPoint.Enum.NORTH;
           break;
-        case CardinalPointsEnum.SOUTH:
-          this._currentDirection = CardinalPointsEnum.EAST;
+        case CardinalPoint.Enum.SOUTH:
+          this._currentDirection = CardinalPoint.Enum.EAST;
           break;
-        case CardinalPointsEnum.WEST:
-          this._currentDirection = CardinalPointsEnum.SOUTH;
+        case CardinalPoint.Enum.WEST:
+          this._currentDirection = CardinalPoint.Enum.SOUTH;
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection);
@@ -77,17 +77,17 @@ export namespace Rover {
 
     public turnRight(): void {
       switch (this._currentDirection) {
-        case CardinalPointsEnum.NORTH:
-          this._currentDirection = CardinalPointsEnum.EAST;
+        case CardinalPoint.Enum.NORTH:
+          this._currentDirection = CardinalPoint.Enum.EAST;
           break;
-        case CardinalPointsEnum.EAST:
-          this._currentDirection = CardinalPointsEnum.SOUTH;
+        case CardinalPoint.Enum.EAST:
+          this._currentDirection = CardinalPoint.Enum.SOUTH;
           break;
-        case CardinalPointsEnum.SOUTH:
-          this._currentDirection = CardinalPointsEnum.WEST;
+        case CardinalPoint.Enum.SOUTH:
+          this._currentDirection = CardinalPoint.Enum.WEST;
           break;
-        case CardinalPointsEnum.WEST:
-          this._currentDirection = CardinalPointsEnum.NORTH;
+        case CardinalPoint.Enum.WEST:
+          this._currentDirection = CardinalPoint.Enum.NORTH;
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection);
