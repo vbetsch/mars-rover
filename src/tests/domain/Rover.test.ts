@@ -86,4 +86,34 @@ describe('Rover', () => {
 
     expect(rover.direction).toStrictEqual(DirectionsEnum.EAST);
   });
+  it('Rover - should turn left - from east to north', () => {
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.EAST,
+    });
+
+    rover.turnLeft();
+
+    expect(rover.direction).toStrictEqual(DirectionsEnum.NORTH);
+  });
+  it('Rover - should turn left - from north to west', () => {
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.NORTH,
+    });
+
+    rover.turnLeft();
+
+    expect(rover.direction).toStrictEqual(DirectionsEnum.WEST);
+  });
+  it('Rover - should turn left - from west to south', () => {
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.WEST,
+    });
+
+    rover.turnLeft();
+
+    expect(rover.direction).toStrictEqual(DirectionsEnum.SOUTH);
+  });
 });
