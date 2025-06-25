@@ -20,6 +20,7 @@ export default tseslint.config(
         prettier: eslintPluginPrettier,
       },
       rules: {
+        'max-params': ['warn', 1],
         'prettier/prettier': ['error', { semi: true }],
         semi: ['error', 'always'],
         '@typescript-eslint/explicit-member-accessibility': [
@@ -28,6 +29,9 @@ export default tseslint.config(
         ],
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
+        'require-object-destructuring': 'off',
+        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
+        '@typescript-eslint/prefer-function-type': 'warn',
         '@typescript-eslint/explicit-function-return-type': [
           'error',
           { allowExpressions: false },
