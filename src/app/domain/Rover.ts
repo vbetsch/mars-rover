@@ -9,7 +9,7 @@ export namespace Rover {
 
   export class Class {
     private _currentPosition: Point.Class;
-    private readonly _currentDirection: DirectionsEnum;
+    private _currentDirection: DirectionsEnum;
 
     public constructor(params: Type) {
       this._currentPosition = params.startingPoint;
@@ -49,6 +49,25 @@ export namespace Rover {
             x: this._currentPosition.x - 1,
             y: this._currentPosition.y,
           });
+          break;
+        default:
+          throw new Error(`Unknown Direction: ${this._currentDirection}`);
+      }
+    }
+
+    public turnLeft(): void {
+      switch (this._currentDirection) {
+        case DirectionsEnum.NORTH:
+          this._currentDirection = DirectionsEnum.WEST;
+          break;
+        case DirectionsEnum.EAST:
+          this._currentDirection = DirectionsEnum.NORTH;
+          break;
+        case DirectionsEnum.SOUTH:
+          this._currentDirection = DirectionsEnum.EAST;
+          break;
+        case DirectionsEnum.WEST:
+          this._currentDirection = DirectionsEnum.SOUTH;
           break;
         default:
           throw new Error(`Unknown Direction: ${this._currentDirection}`);
