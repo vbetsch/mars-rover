@@ -30,6 +30,7 @@ export default tseslint.config(
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
+        'require-await': 'error',
         'no-restricted-syntax': [
           'error',
           {
@@ -37,8 +38,12 @@ export default tseslint.config(
             message: 'Do not use `as any`, types must be explicit and safe.',
           },
         ],
+        '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
         '@typescript-eslint/no-unsafe-member-access': 'warn',
-        '@typescript-eslint/no-magic-numbers': ['warn', { ignoreEnums: true, ignore: [0, 1], enforceConst: true }],
+        '@typescript-eslint/no-magic-numbers': [
+          'warn',
+          { ignoreEnums: true, ignore: [0, 1], enforceConst: true },
+        ],
         '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
         '@typescript-eslint/prefer-function-type': 'warn',
         '@typescript-eslint/explicit-function-return-type': [
@@ -56,6 +61,18 @@ export default tseslint.config(
             modifiers: ['private'],
             format: ['camelCase'],
             leadingUnderscore: 'require',
+          },
+          {
+            selector: 'interface',
+            format: ['PascalCase'],
+            custom: {
+              regex: '^I[A-Z]',
+              match: true, // ou false si tu ne veux PAS de préfixe I
+            },
+          },
+          {
+            selector: 'typeAlias',
+            format: ['PascalCase'],
           },
         ],
         'no-undefined': 'warn',
