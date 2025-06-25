@@ -1,16 +1,16 @@
 import { Point } from '@app/domain/Point';
-import { DirectionsEnum } from '@app/enums/directions.enum';
+import { CardinalPointsEnum } from '@app/enums/cardinal-points.enum';
 import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 
 export namespace Rover {
   export type Type = {
     readonly startingPoint: Point.Class;
-    readonly direction: DirectionsEnum;
+    readonly direction: CardinalPointsEnum;
   };
 
   export class Class {
     private _currentPosition: Point.Class;
-    private _currentDirection: DirectionsEnum;
+    private _currentDirection: CardinalPointsEnum;
 
     public constructor(params: Type) {
       this._currentPosition = params.startingPoint;
@@ -21,31 +21,31 @@ export namespace Rover {
       return this._currentPosition;
     }
 
-    public get direction(): DirectionsEnum {
+    public get direction(): CardinalPointsEnum {
       return this._currentDirection;
     }
 
     public moveForward(): void {
       switch (this._currentDirection) {
-        case DirectionsEnum.NORTH:
+        case CardinalPointsEnum.NORTH:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x,
             y: this._currentPosition.y + 1,
           });
           break;
-        case DirectionsEnum.EAST:
+        case CardinalPointsEnum.EAST:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x + 1,
             y: this._currentPosition.y,
           });
           break;
-        case DirectionsEnum.SOUTH:
+        case CardinalPointsEnum.SOUTH:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x,
             y: this._currentPosition.y - 1,
           });
           break;
-        case DirectionsEnum.WEST:
+        case CardinalPointsEnum.WEST:
           this._currentPosition = new Point.Class({
             x: this._currentPosition.x - 1,
             y: this._currentPosition.y,
@@ -58,17 +58,17 @@ export namespace Rover {
 
     public turnLeft(): void {
       switch (this._currentDirection) {
-        case DirectionsEnum.NORTH:
-          this._currentDirection = DirectionsEnum.WEST;
+        case CardinalPointsEnum.NORTH:
+          this._currentDirection = CardinalPointsEnum.WEST;
           break;
-        case DirectionsEnum.EAST:
-          this._currentDirection = DirectionsEnum.NORTH;
+        case CardinalPointsEnum.EAST:
+          this._currentDirection = CardinalPointsEnum.NORTH;
           break;
-        case DirectionsEnum.SOUTH:
-          this._currentDirection = DirectionsEnum.EAST;
+        case CardinalPointsEnum.SOUTH:
+          this._currentDirection = CardinalPointsEnum.EAST;
           break;
-        case DirectionsEnum.WEST:
-          this._currentDirection = DirectionsEnum.SOUTH;
+        case CardinalPointsEnum.WEST:
+          this._currentDirection = CardinalPointsEnum.SOUTH;
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection);
@@ -77,17 +77,17 @@ export namespace Rover {
 
     public turnRight(): void {
       switch (this._currentDirection) {
-        case DirectionsEnum.NORTH:
-          this._currentDirection = DirectionsEnum.EAST;
+        case CardinalPointsEnum.NORTH:
+          this._currentDirection = CardinalPointsEnum.EAST;
           break;
-        case DirectionsEnum.EAST:
-          this._currentDirection = DirectionsEnum.SOUTH;
+        case CardinalPointsEnum.EAST:
+          this._currentDirection = CardinalPointsEnum.SOUTH;
           break;
-        case DirectionsEnum.SOUTH:
-          this._currentDirection = DirectionsEnum.WEST;
+        case CardinalPointsEnum.SOUTH:
+          this._currentDirection = CardinalPointsEnum.WEST;
           break;
-        case DirectionsEnum.WEST:
-          this._currentDirection = DirectionsEnum.NORTH;
+        case CardinalPointsEnum.WEST:
+          this._currentDirection = CardinalPointsEnum.NORTH;
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection);
