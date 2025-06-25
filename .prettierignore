@@ -1,2 +1,4 @@
 /node_modules/
 /dist/
+jest.config.js
+README.md
