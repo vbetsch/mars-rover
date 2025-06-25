@@ -70,4 +70,18 @@ describe('Rover', () => {
     expect(rover.position).toStrictEqual(endPoint);
     expect(rover.direction).toStrictEqual(direction);
   });
+  it('Rover - should not move', () => {
+    const errorMessage: string = 'Coordinates must be non-negative';
+
+    let rover: Rover.Class = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.SOUTH,
+    });
+    expect(() => rover.moveForward()).toThrow(errorMessage);
+    rover = new Rover.Class({
+      startingPoint: new Point.Class({ x: 0, y: 0 }),
+      direction: DirectionsEnum.WEST,
+    });
+    expect(() => rover.moveForward()).toThrow(errorMessage);
+  });
 });
