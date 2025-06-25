@@ -1,3 +1,5 @@
+import {Point} from "../src/point";
+
 describe('Point', () => {
     it('Point - should have x and y', () => {
         const x: number = 0;
