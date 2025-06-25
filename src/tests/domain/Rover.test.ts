@@ -11,8 +11,8 @@ describe('Rover', () => {
       direction: direction,
     });
 
-    expect(rover.position).toBe(point);
-    expect(rover.direction).toBe(direction);
+    expect(rover.position).toStrictEqual(point);
+    expect(rover.direction).toStrictEqual(direction);
   });
   it('Rover - should move forward', () => {
     const startingPoint: Point.Class = new Point.Class({ x: 0, y: 0 });
