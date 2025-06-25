@@ -15,5 +15,5 @@
     // Import behavior
     "importsNotUsedAsValues": "error"
   },
-  "include": ["src", "tests"]
+  "include": ["src"]
 }
