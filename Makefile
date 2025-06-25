@@ -8,5 +8,10 @@ start: node_modules
 tests: node_modules
 	npm test
 
+lint: node_modules
+	npm run lint
 
-.PHONY: start tests
+format: node_modules
+	npm run format
+
+.PHONY: start tests lint format
