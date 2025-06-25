@@ -20,6 +20,7 @@ export default tseslint.config(
         prettier: eslintPluginPrettier,
       },
       rules: {
+        'max-len': ['warn', { code: 300, ignoreUrls: true }],
         'max-params': ['warn', 1],
         'prettier/prettier': ['error', { semi: true }],
         semi: ['error', 'always'],
@@ -31,6 +32,7 @@ export default tseslint.config(
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
         'require-await': 'error',
+        'default-case': 'warn',
         'no-restricted-syntax': [
           'error',
           {
@@ -38,7 +40,16 @@ export default tseslint.config(
             message: 'Do not use `as any`, types must be explicit and safe.',
           },
         ],
-        '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_' },
+        ],
+        '@typescript-eslint/no-extraneous-class': [
+          'error',
+          { allowConstructorOnly: false },
+        ],
+        '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
+        '@typescript-eslint/no-empty-function': ['warn'],
         '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-magic-numbers': [
           'warn',
