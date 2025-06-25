@@ -74,5 +74,24 @@ export namespace Rover {
           throw new UnknownDirectionError(this._currentDirection);
       }
     }
+
+    public turnRight(): void {
+      switch (this._currentDirection) {
+        case DirectionsEnum.NORTH:
+          this._currentDirection = DirectionsEnum.EAST;
+          break;
+        case DirectionsEnum.EAST:
+          this._currentDirection = DirectionsEnum.SOUTH;
+          break;
+        case DirectionsEnum.SOUTH:
+          this._currentDirection = DirectionsEnum.WEST;
+          break;
+        case DirectionsEnum.WEST:
+          this._currentDirection = DirectionsEnum.NORTH;
+          break;
+        default:
+          throw new UnknownDirectionError(this._currentDirection);
+      }
+    }
   }
 }
