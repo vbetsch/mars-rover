@@ -25,7 +25,7 @@ describe('Rover', () => {
     rover.moveForward();
 
     const endPoint: Point.Class = new Point.Class({ x: 1, y: 0 });
-    expect(rover.position).toBe(endPoint);
-    expect(rover.direction).toBe(direction);
+    expect(rover.position).toStrictEqual(endPoint);
+    expect(rover.direction).toStrictEqual(direction);
   });
 });
