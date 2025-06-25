@@ -30,6 +30,15 @@ export default tseslint.config(
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'TSAsExpression > TSAnyKeyword',
+            message: 'Do not use `as any`, types must be explicit and safe.',
+          },
+        ],
+        '@typescript-eslint/no-unsafe-member-access': 'warn',
+        '@typescript-eslint/no-magic-numbers': ['warn', { ignoreEnums: true, ignore: [0, 1], enforceConst: true }],
         '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
         '@typescript-eslint/prefer-function-type': 'warn',
         '@typescript-eslint/explicit-function-return-type': [
