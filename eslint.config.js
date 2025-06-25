@@ -9,7 +9,7 @@ export default [
     ignores: [
         'node_modules',
         'dist',
-        'jest.config.js',
+        'jest.config.cjs',
     ],
   },
   {
