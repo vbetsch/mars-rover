@@ -64,7 +64,6 @@ export default tseslint.config(
     },
   ],
   {
-    // Nécessaire pour activer le parsing avec type info
     files: ['**/*.ts'],
     languageOptions: {
       parser: tseslint.parser,
