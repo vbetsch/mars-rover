@@ -19,8 +19,6 @@
         "noImplicitOverride": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        // Import behavior
-        "importsNotUsedAsValues": "error"
     },
     "include": [
         "src"
