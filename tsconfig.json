@@ -2,14 +2,18 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
+    "outDir": "dist",
+    "esModuleInterop": true,
+
+    // Strictness
     "strict": true,
     "strictPropertyInitialization": true,
-    "outDir": "dist",
-    "esModuleInterop": true
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Import behavior
+    "importsNotUsedAsValues": "error"
   },
-  "include": ["src", "tests"],
-  "forceConsistentCasingInFileNames": true,
-  "noImplicitOverride": true,
-  "noFallthroughCasesInSwitch": true,
-  "importsNotUsedAsValues": "error"
+  "include": ["src", "tests"]
 }

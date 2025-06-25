@@ -6,9 +6,11 @@ export default tseslint.config(
   [
     js.configs.recommended,
     ...tseslint.configs.recommended,
+
     {
       ignores: ['node_modules', 'dist', 'jest.config.cjs'],
     },
+
     {
       files: ['**/*.ts'],
       languageOptions: {
@@ -20,26 +22,40 @@ export default tseslint.config(
         prettier: eslintPluginPrettier,
       },
       rules: {
-        'max-len': ['warn', { code: 300, ignoreUrls: true }],
-        'max-params': ['warn', 1],
+        // Formatting
         'prettier/prettier': ['error', { semi: true }],
         semi: ['error', 'always'],
+        'max-len': ['warn', { code: 300, ignoreUrls: true }],
+
+        // Code structure and clarity
+        'max-params': ['warn', 1],
+        'default-case': 'warn',
+        'require-await': 'error',
+        'no-undefined': 'warn',
+        'no-var': 'error',
+        'prefer-const': ['error', { destructuring: 'all' }],
+        'require-object-destructuring': 'off',
+
+        // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
           { accessibility: 'explicit' },
         ],
-        'no-var': 'error',
-        'prefer-const': ['error', { destructuring: 'all' }],
-        'require-object-destructuring': 'off',
-        'require-await': 'error',
-        'default-case': 'warn',
-        'no-restricted-syntax': [
+        '@typescript-eslint/explicit-function-return-type': [
           'error',
-          {
-            selector: 'TSAsExpression > TSAnyKeyword',
-            message: 'Do not use `as any`, types must be explicit and safe.',
-          },
+          { allowExpressions: false },
         ],
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/prefer-readonly': 'warn',
+        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
+        '@typescript-eslint/prefer-function-type': 'warn',
+        '@typescript-eslint/no-magic-numbers': [
+          'warn',
+          { ignoreEnums: true, ignore: [0, 1], enforceConst: true },
+        ],
+        '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unused-vars': [
           'error',
           { argsIgnorePattern: '^_' },
@@ -50,21 +66,9 @@ export default tseslint.config(
         ],
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/no-empty-function': ['warn'],
-        '@typescript-eslint/no-unsafe-member-access': 'warn',
-        '@typescript-eslint/no-magic-numbers': [
-          'warn',
-          { ignoreEnums: true, ignore: [0, 1], enforceConst: true },
-        ],
-        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
-        '@typescript-eslint/prefer-function-type': 'warn',
-        '@typescript-eslint/explicit-function-return-type': [
-          'error',
-          { allowExpressions: false },
-        ],
-        '@typescript-eslint/no-inferrable-types': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
-        '@typescript-eslint/prefer-readonly': 'warn',
+        '@typescript-eslint/adjacent-overload-signatures': 'warn',
+
+        // Naming conventions
         '@typescript-eslint/naming-convention': [
           'error',
           {
@@ -78,7 +82,7 @@ export default tseslint.config(
             format: ['PascalCase'],
             custom: {
               regex: '^I[A-Z]',
-              match: true, // ou false si tu ne veux PAS de préfixe I
+              match: true,
             },
           },
           {
@@ -86,8 +90,15 @@ export default tseslint.config(
             format: ['PascalCase'],
           },
         ],
-        'no-undefined': 'warn',
-        '@typescript-eslint/adjacent-overload-signatures': 'warn',
+
+        // Ban unsafe casts
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: 'TSAsExpression > TSAnyKeyword',
+            message: 'Do not use `as any`, types must be explicit and safe.',
+          },
+        ],
       },
     },
   ],
