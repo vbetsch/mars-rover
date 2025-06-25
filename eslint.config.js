@@ -7,11 +7,7 @@ export default tseslint.config(
     js.configs.recommended,
     ...tseslint.configs.recommended,
     {
-      ignores: [
-        'node_modules',
-        'dist',
-        'jest.config.cjs',
-    ],
+      ignores: ['node_modules', 'dist', 'jest.config.cjs'],
     },
     {
       files: ['**/*.ts'],
@@ -26,10 +22,16 @@ export default tseslint.config(
       rules: {
         'prettier/prettier': ['error', { semi: true }],
         semi: ['error', 'always'],
-        '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'explicit' }],
+        '@typescript-eslint/explicit-member-accessibility': [
+          'error',
+          { accessibility: 'explicit' },
+        ],
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
-        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: false }],
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          { allowExpressions: false },
+        ],
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
