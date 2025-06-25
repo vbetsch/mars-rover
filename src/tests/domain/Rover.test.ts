@@ -1,10 +1,11 @@
 import { Point } from '@app/domain/Point';
 import { Rover } from '@app/domain/Rover';
+import { DirectionsEnum } from '@app/enums/directions.enum';
 
 describe('Rover', () => {
   it('Rover - should have a starting point and a direction', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
-    const direction: DirectionEnum = DirectionEnum.EAST;
+    const direction: DirectionsEnum = DirectionsEnum.EAST;
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
       direction: direction,
