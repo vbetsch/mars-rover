@@ -1,19 +1,28 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "dist",
-    "esModuleInterop": true,
-
-    // Strictness
-    "strict": true,
-    "strictPropertyInitialization": true,
-    "noImplicitOverride": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-
-    // Import behavior
-    "importsNotUsedAsValues": "error"
-  },
-  "include": ["src"]
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "commonjs",
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@app/*": [
+                "app/*"
+            ],
+            "@tests/*": [
+                "tests/*"
+            ]
+        },
+        // Strictness
+        "strict": true,
+        "strictPropertyInitialization": true,
+        "noImplicitOverride": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        // Import behavior
+        "importsNotUsedAsValues": "error"
+    },
+    "include": [
+        "src"
+    ]
 }

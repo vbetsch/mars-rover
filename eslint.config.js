@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
   [
@@ -20,6 +21,7 @@ export default tseslint.config(
       },
       plugins: {
         prettier: eslintPluginPrettier,
+        import: importPlugin,
       },
       rules: {
         // Formatting
@@ -35,6 +37,7 @@ export default tseslint.config(
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
+        'import/no-unresolved': 'error',
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
@@ -100,6 +103,14 @@ export default tseslint.config(
             message: 'Do not use `as any`, types must be explicit and safe.',
           },
         ],
+      },
+      settings: {
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+            project: './tsconfig.json',
+          },
+        },
       },
     },
   ],
