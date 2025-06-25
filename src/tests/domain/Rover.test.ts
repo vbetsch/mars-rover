@@ -124,4 +124,52 @@ describe('Rover', () => {
     expect(rover.position).toStrictEqual(point);
     expect(rover.direction).toStrictEqual(DirectionsEnum.SOUTH);
   });
+  it('Rover - should turn right - from south to west', () => {
+    const point: Point.Class = new Point.Class({ x: 0, y: 0 });
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: point,
+      direction: DirectionsEnum.SOUTH,
+    });
+
+    rover.turnRight();
+
+    expect(rover.position).toStrictEqual(point);
+    expect(rover.direction).toStrictEqual(DirectionsEnum.WEST);
+  });
+  it('Rover - should turn right - from west to north', () => {
+    const point: Point.Class = new Point.Class({ x: 0, y: 0 });
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: point,
+      direction: DirectionsEnum.WEST,
+    });
+
+    rover.turnRight();
+
+    expect(rover.position).toStrictEqual(point);
+    expect(rover.direction).toStrictEqual(DirectionsEnum.NORTH);
+  });
+  it('Rover - should turn right - from north to east', () => {
+    const point: Point.Class = new Point.Class({ x: 0, y: 0 });
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: point,
+      direction: DirectionsEnum.NORTH,
+    });
+
+    rover.turnRight();
+
+    expect(rover.position).toStrictEqual(point);
+    expect(rover.direction).toStrictEqual(DirectionsEnum.EAST);
+  });
+  it('Rover - should turn right - from east to south', () => {
+    const point: Point.Class = new Point.Class({ x: 0, y: 0 });
+    const rover: Rover.Class = new Rover.Class({
+      startingPoint: point,
+      direction: DirectionsEnum.EAST,
+    });
+
+    rover.turnRight();
+
+    expect(rover.position).toStrictEqual(point);
+    expect(rover.direction).toStrictEqual(DirectionsEnum.SOUTH);
+  });
 });
