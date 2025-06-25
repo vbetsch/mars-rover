@@ -1,7 +1,8 @@
+# Requirements
 node_modules:
 	npm install
 
-
+# Commands
 start: node_modules
 	npm run start
 
@@ -15,3 +16,7 @@ format: node_modules
 	npm run format
 
 .PHONY: start tests lint format
+
+# Aliases
+ci: lint tests
+.PHONY: ci
