@@ -2,6 +2,7 @@
   "name": "mars_rover",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "npx ts-node src/index.ts",
     "test": "jest",
@@ -24,5 +25,8 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "typescript-eslint": "^8.35.0"
   }
 }
