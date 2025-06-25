@@ -1,5 +1,6 @@
 import { Point } from '@app/domain/Point';
 import { DirectionsEnum } from '@app/enums/directions.enum';
+import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 
 export namespace Rover {
   export type Type = {
@@ -51,7 +52,7 @@ export namespace Rover {
           });
           break;
         default:
-          throw new Error(`Unknown Direction: ${this._currentDirection}`);
+          throw new UnknownDirectionError(this._currentDirection);
       }
     }
 
@@ -70,7 +71,7 @@ export namespace Rover {
           this._currentDirection = DirectionsEnum.SOUTH;
           break;
         default:
-          throw new Error(`Unknown Direction: ${this._currentDirection}`);
+          throw new UnknownDirectionError(this._currentDirection);
       }
     }
   }
