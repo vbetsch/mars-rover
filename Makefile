@@ -6,7 +6,7 @@ start: node_modules
 	npm run start
 
 tests: node_modules
-	npm run test
+	npm test
 
 
 .PHONY: start tests
