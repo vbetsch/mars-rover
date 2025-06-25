@@ -5,6 +5,12 @@ on:
     branches:
       - master
       - develop
+      - feature/**
+      - hotfix/**
+      - bugfix/**
+      - chore/**
+      - refactor/**
+      - test/**
 
 jobs:
   lint:
