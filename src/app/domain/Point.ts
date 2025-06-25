@@ -9,6 +9,10 @@ export namespace Point {
     private readonly _y: number;
 
     public constructor(params: Type) {
+      if (params.x < 0 || params.y < 0) {
+        throw new Error('Coordinates must be non-negative');
+      }
+
       this._x = params.x;
       this._y = params.y;
     }
