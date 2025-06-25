@@ -6,14 +6,14 @@ export namespace Rover {
   };
 
   export class Class {
-    private readonly _startingPoint: Point.Class;
+    private readonly _currentPosition: Point.Class;
 
     public constructor(params: Type) {
-      this._startingPoint = params.point;
+      this._currentPosition = params.point;
     }
 
-    public get startingPoint(): Point.Class {
-      return this._startingPoint;
+    public get position(): Point.Class {
+      return this._currentPosition;
     }
   }
 }

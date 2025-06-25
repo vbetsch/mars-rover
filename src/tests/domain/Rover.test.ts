@@ -6,6 +6,6 @@ describe('Rover', () => {
     const startingPoint: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({ point: startingPoint });
 
-    expect(rover.startingPoint).toBe(startingPoint);
+    expect(rover.position).toBe(startingPoint);
   });
 });
