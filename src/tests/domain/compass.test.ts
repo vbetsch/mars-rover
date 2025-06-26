@@ -39,6 +39,33 @@ describe('Compass', () => {
       Compass.Instance.getNextLeftCardinalPoint(currentCardinalPoint)
     ).toStrictEqual(expectCardinalPoint);
   });
+  it('Compass - should get the next left cardinal point - from WEST to SOUTH', () => {
+    const currentCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.WEST);
+    const expectCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.SOUTH);
+    expect(
+      Compass.Instance.getNextLeftCardinalPoint(currentCardinalPoint)
+    ).toStrictEqual(expectCardinalPoint);
+  });
+  it('Compass - should get the next left cardinal point - from SOUTH to EAST', () => {
+    const currentCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.SOUTH);
+    const expectCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.EAST);
+    expect(
+      Compass.Instance.getNextLeftCardinalPoint(currentCardinalPoint)
+    ).toStrictEqual(expectCardinalPoint);
+  });
+  it('Compass - should get the next left cardinal point - from EAST to NORTH', () => {
+    const currentCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.EAST);
+    const expectCardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.NORTH);
+    expect(
+      Compass.Instance.getNextLeftCardinalPoint(currentCardinalPoint)
+    ).toStrictEqual(expectCardinalPoint);
+  });
   // it('Compass - should get the next right cardinal point - from NORTH to EAST', () => {
   //   const currentCardinalPoint: CardinalPoint.Class =
   //     Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.NORTH);
