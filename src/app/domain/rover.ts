@@ -1,16 +1,17 @@
 import { Point } from '@app/domain/point';
 import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 import { Compass } from '@app/domain/compass';
+import { CardinalPoint } from '@app/domain/cardinal-point';
 
 export namespace Rover {
   export type Params = {
     readonly startingPoint: Point.Class;
-    readonly direction: Compass.CardinalPointEnum;
+    readonly direction: CardinalPoint.Class;
   };
 
   export class Class {
     private _currentPosition: Point.Class;
-    private _currentDirection: Compass.CardinalPointEnum;
+    private _currentDirection: CardinalPoint.Class;
 
     public constructor(params: Params) {
       this._currentPosition = params.startingPoint;
@@ -21,76 +22,90 @@ export namespace Rover {
       return this._currentPosition;
     }
 
-    public get direction(): Compass.CardinalPointEnum {
+    public get direction(): CardinalPoint.Class {
       return this._currentDirection;
     }
 
     public moveForward(): void {
-      switch (this._currentDirection) {
-        case Compass.CardinalPointEnum.NORTH:
-          this._currentPosition = new Point.Class({
-            x: this._currentPosition.x,
-            y: this._currentPosition.y + 1,
-          });
-          break;
-        case Compass.CardinalPointEnum.EAST:
-          this._currentPosition = new Point.Class({
-            x: this._currentPosition.x + 1,
-            y: this._currentPosition.y,
-          });
-          break;
-        case Compass.CardinalPointEnum.SOUTH:
-          this._currentPosition = new Point.Class({
-            x: this._currentPosition.x,
-            y: this._currentPosition.y - 1,
-          });
-          break;
-        case Compass.CardinalPointEnum.WEST:
-          this._currentPosition = new Point.Class({
-            x: this._currentPosition.x - 1,
-            y: this._currentPosition.y,
-          });
-          break;
-        default:
-          throw new UnknownDirectionError(this._currentDirection);
+      let xReached: number = this._currentPosition.x;
+      let yReached: number = this._currentPosition.y;
+      if (this._currentDirection.mustIncrementX) {
+        xReached += 1;
       }
+      if (this._currentDirection.mustDecrementX) {
+        xReached -= 1;
+      }
+      if (this._currentDirection.mustIncrementY) {
+        yReached += 1;
+      }
+      if (this._currentDirection.mustDecrementY) {
+        yReached -= 1;
+      }
+      this._currentPosition = new Point.Class({
+        x: xReached,
+        y: yReached,
+      });
     }
 
     public turnLeft(): void {
-      switch (this._currentDirection) {
+      switch (this._currentDirection.value) {
         case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = Compass.CardinalPointEnum.WEST;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.WEST,
+            mustDecrementX: true,
+          });
           break;
         case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = Compass.CardinalPointEnum.NORTH;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.NORTH,
+            mustIncrementY: true,
+          });
           break;
         case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = Compass.CardinalPointEnum.EAST;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.EAST,
+            mustIncrementX: true,
+          });
           break;
         case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = Compass.CardinalPointEnum.SOUTH;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.SOUTH,
+            mustDecrementY: true,
+          });
           break;
         default:
-          throw new UnknownDirectionError(this._currentDirection);
+          throw new UnknownDirectionError(this._currentDirection.value);
       }
     }
 
     public turnRight(): void {
-      switch (this._currentDirection) {
+      switch (this._currentDirection.value) {
         case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = Compass.CardinalPointEnum.EAST;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.EAST,
+            mustIncrementX: true,
+          });
           break;
         case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = Compass.CardinalPointEnum.SOUTH;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.SOUTH,
+            mustDecrementY: true,
+          });
           break;
         case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = Compass.CardinalPointEnum.WEST;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.WEST,
+            mustDecrementX: true,
+          });
           break;
         case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = Compass.CardinalPointEnum.NORTH;
+          this._currentDirection = new CardinalPoint.Class({
+            value: Compass.CardinalPointEnum.NORTH,
+            mustIncrementY: true,
+          });
           break;
         default:
-          throw new UnknownDirectionError(this._currentDirection);
+          throw new UnknownDirectionError(this._currentDirection.value);
       }
     }
   }

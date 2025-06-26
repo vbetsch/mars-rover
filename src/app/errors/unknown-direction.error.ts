@@ -1,7 +1,5 @@
-import { Compass } from '@app/domain/compass';
-
 export class UnknownDirectionError extends Error {
-  public constructor(direction: Compass.CardinalPointEnum) {
+  public constructor(direction: string) {
     super(`Unknown direction: ${direction}`);
     this.name = 'UnknownDirectionError';
   }
