@@ -1,7 +1,7 @@
-import { CardinalPoint } from '@app/domain/CardinalPoint';
+import { CardinalPointsEnum } from '@app/enums/cardinal-points.enum';
 
 export class UnknownDirectionError extends Error {
-  public constructor(direction: CardinalPoint.Enum) {
+  public constructor(direction: CardinalPointsEnum) {
     super(`Unknown direction: ${direction}`);
     this.name = 'UnknownDirectionError';
   }

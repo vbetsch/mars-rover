@@ -1,23 +1,18 @@
-export namespace CardinalPoint {
-  export enum Enum {
-    NORTH = 'N',
-    EAST = 'E',
-    SOUTH = 'S',
-    WEST = 'W',
-  }
+import { CardinalPointsEnum } from '@app/enums/cardinal-points.enum';
 
+export namespace CardinalPoint {
   export type Type = {
-    readonly value: Enum;
+    readonly value: CardinalPointsEnum;
   };
 
   export class Class {
-    private readonly _value: Enum;
+    private readonly _value: CardinalPointsEnum;
 
     public constructor(params: Type) {
       this._value = params.value;
     }
 
-    public get value(): Enum {
+    public get value(): CardinalPointsEnum {
       return this._value;
     }
   }
