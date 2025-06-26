@@ -1,4 +1,4 @@
-// import { CardinalPoint } from '@app/domain/cardinal-point';
+import { CardinalPoint } from '@app/domain/cardinal-point';
 import { Compass } from '@app/domain/compass';
 
 describe('Compass', () => {
@@ -10,9 +10,9 @@ describe('Compass', () => {
       Compass.Enum.WEST,
     ]);
   });
-  // it('Compass - north should have mustIncrementY', () => {
-  //   const cardinalPoint: CardinalPoint.Class =
-  //     Compass.Instance.getCardinalPoint(Compass.Enum.NORTH);
-  //   expect(cardinalPoint.mustIncrementY).toBe(true);
-  // });
+  it('Compass - north should have mustIncrementY', () => {
+    const cardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.Enum.NORTH);
+    expect(cardinalPoint.mustIncrementY).toBe(true);
+  });
 });
