@@ -16,4 +16,21 @@ export namespace Compass {
       return this._cardinalPoints.map((cardinalPoint) => cardinalPoint.value);
     }
   }
+
+  export const Instance: Class = new Class({
+    cardinalPoints: [
+      new CardinalPoint.Class({
+        value: 'N',
+      }),
+      new CardinalPoint.Class({
+        value: 'E',
+      }),
+      new CardinalPoint.Class({
+        value: 'S',
+      }),
+      new CardinalPoint.Class({
+        value: 'W',
+      }),
+    ],
+  });
 }
