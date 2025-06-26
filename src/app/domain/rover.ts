@@ -50,28 +50,24 @@ export namespace Rover {
     public turnLeft(): void {
       switch (this._currentDirection.value) {
         case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.WEST,
-            mustDecrementX: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.WEST
+          );
           break;
         case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.NORTH,
-            mustIncrementY: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.NORTH
+          );
           break;
         case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.EAST,
-            mustIncrementX: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.EAST
+          );
           break;
         case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.SOUTH,
-            mustDecrementY: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.SOUTH
+          );
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection.value);
@@ -81,28 +77,24 @@ export namespace Rover {
     public turnRight(): void {
       switch (this._currentDirection.value) {
         case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.EAST,
-            mustIncrementX: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.EAST
+          );
           break;
         case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.SOUTH,
-            mustDecrementY: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.SOUTH
+          );
           break;
         case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.WEST,
-            mustDecrementX: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.WEST
+          );
           break;
         case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = new CardinalPoint.Class({
-            value: Compass.CardinalPointEnum.NORTH,
-            mustIncrementY: true,
-          });
+          this._currentDirection = Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.NORTH
+          );
           break;
         default:
           throw new UnknownDirectionError(this._currentDirection.value);
