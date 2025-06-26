@@ -4,6 +4,7 @@ export namespace CardinalPoint {
     readonly mustIncrementX?: boolean;
     readonly mustDecrementX?: boolean;
     readonly mustIncrementY?: boolean;
+    readonly mustDecrementY?: boolean;
   };
 
   export class Class {
@@ -11,12 +12,14 @@ export namespace CardinalPoint {
     private readonly _mustIncrementX: boolean;
     private readonly _mustDecrementX: boolean;
     private readonly _mustIncrementY: boolean;
+    private readonly _mustDecrementY: boolean;
 
     public constructor(params: Params) {
       this._value = params.value;
       this._mustIncrementX = params.mustIncrementX ?? false;
       this._mustDecrementX = params.mustDecrementX ?? false;
       this._mustIncrementY = params.mustIncrementY ?? false;
+      this._mustDecrementY = params.mustDecrementY ?? false;
     }
 
     public get value(): string {
@@ -33,6 +36,10 @@ export namespace CardinalPoint {
 
     public get mustIncrementY(): boolean {
       return this._mustIncrementY;
+    }
+
+    public get mustDecrementY(): boolean {
+      return this._mustDecrementY;
     }
   }
 }
