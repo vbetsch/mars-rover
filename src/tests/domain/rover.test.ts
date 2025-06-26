@@ -1,104 +1,87 @@
 import { Point } from '@app/domain/point';
 import { Rover } from '@app/domain/rover';
 import { Compass } from '@app/domain/compass';
-import { CardinalPoint } from '@app/domain/cardinal-point';
 
 describe('Rover', () => {
   it('Rover - should have a starting point and a direction', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.EAST;
-    const direction: CardinalPoint.Class =
-      Compass.Instance.getCardinalPoint(cardinalPointValue);
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: direction,
+      direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
 
     expect(rover.position).toStrictEqual(point);
     expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
   it('Rover - should move to north', () => {
-    const directionValue: Compass.CardinalPointEnum =
+    const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.NORTH;
     const rover: Rover.Class = new Rover.Class({
       startingPoint: new Point.Class({ x: 1, y: 1 }),
-      direction: new CardinalPoint.Class({
-        value: directionValue,
-        mustIncrementY: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
 
     rover.moveForward();
 
-    expect(rover.direction.value).toStrictEqual(directionValue);
+    expect(rover.direction.value).toStrictEqual(cardinalPointValue);
     expect(rover.position).toStrictEqual(new Point.Class({ x: 1, y: 2 }));
   });
   it('Rover - should move to east', () => {
-    const directionValue: Compass.CardinalPointEnum =
+    const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.EAST;
     const rover: Rover.Class = new Rover.Class({
       startingPoint: new Point.Class({ x: 1, y: 1 }),
-      direction: new CardinalPoint.Class({
-        value: directionValue,
-        mustIncrementX: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
 
     rover.moveForward();
 
-    expect(rover.direction.value).toStrictEqual(directionValue);
+    expect(rover.direction.value).toStrictEqual(cardinalPointValue);
     expect(rover.position).toStrictEqual(new Point.Class({ x: 2, y: 1 }));
   });
   it('Rover - should move to south', () => {
-    const directionValue: Compass.CardinalPointEnum =
+    const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.SOUTH;
     const rover: Rover.Class = new Rover.Class({
       startingPoint: new Point.Class({ x: 1, y: 1 }),
-      direction: new CardinalPoint.Class({
-        value: directionValue,
-        mustDecrementY: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
 
     rover.moveForward();
 
     expect(rover.position).toStrictEqual(new Point.Class({ x: 1, y: 0 }));
-    expect(rover.direction.value).toStrictEqual(directionValue);
+    expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
   it('Rover - should move to west', () => {
-    const directionValue: Compass.CardinalPointEnum =
+    const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.WEST;
     const rover: Rover.Class = new Rover.Class({
       startingPoint: new Point.Class({ x: 1, y: 1 }),
-      direction: new CardinalPoint.Class({
-        value: directionValue,
-        mustDecrementX: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
 
     rover.moveForward();
 
     expect(rover.position).toStrictEqual(new Point.Class({ x: 0, y: 1 }));
-    expect(rover.direction.value).toStrictEqual(directionValue);
+    expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
   it('Rover - should not move', () => {
     const errorMessage: string = 'Coordinates must be non-negative';
 
     let rover: Rover.Class = new Rover.Class({
       startingPoint: new Point.Class({ x: 0, y: 0 }),
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.SOUTH,
-        mustDecrementY: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.SOUTH
+      ),
     });
     expect(() => rover.moveForward()).toThrow(errorMessage);
     rover = new Rover.Class({
       startingPoint: new Point.Class({ x: 0, y: 0 }),
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.WEST,
-        mustDecrementX: true,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.WEST
+      ),
     });
     expect(() => rover.moveForward()).toThrow(errorMessage);
   });
@@ -106,9 +89,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.SOUTH,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.SOUTH
+      ),
     });
 
     rover.turnLeft();
@@ -120,9 +103,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.EAST,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.EAST
+      ),
     });
 
     rover.turnLeft();
@@ -136,9 +119,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.NORTH,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.NORTH
+      ),
     });
 
     rover.turnLeft();
@@ -150,9 +133,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.WEST,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.WEST
+      ),
     });
 
     rover.turnLeft();
@@ -166,9 +149,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.SOUTH,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.SOUTH
+      ),
     });
 
     rover.turnRight();
@@ -180,9 +163,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.WEST,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.WEST
+      ),
     });
 
     rover.turnRight();
@@ -196,9 +179,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.NORTH,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.NORTH
+      ),
     });
 
     rover.turnRight();
@@ -210,9 +193,9 @@ describe('Rover', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: Compass.CardinalPointEnum.EAST,
-      }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.EAST
+      ),
     });
 
     rover.turnRight();
