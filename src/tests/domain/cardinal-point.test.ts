@@ -9,7 +9,7 @@ describe('CardinalPoint', () => {
     expect(cardinalPoint.value).toStrictEqual('NORTH');
     expect(cardinalPoint.mustIncrementX).toStrictEqual(false);
     expect(cardinalPoint.mustDecrementX).toStrictEqual(false);
-    // expect(cardinalPoint.mustIncrementY).toStrictEqual(false);
+    expect(cardinalPoint.mustIncrementY).toStrictEqual(false);
     // expect(cardinalPoint.mustDecrementY).toStrictEqual(false);
   });
   it('CardinalPoint - can have mustIncrementX', () => {
@@ -30,15 +30,15 @@ describe('CardinalPoint', () => {
     expect(cardinalPoint.value).toStrictEqual('WEST');
     expect(cardinalPoint.mustDecrementX).toStrictEqual(true);
   });
-  // it('CardinalPoint - can have mustIncrementY', () => {
-  //   const cardinalPoint: CardinalPoint.Class = new CardinalPoint.Class({
-  //     value: 'NORTH',
-  //     mustIncrementY: true,
-  //   });
-  //
-  //   expect(cardinalPoint.value).toStrictEqual('NORTH');
-  //   expect(cardinalPoint.mustIncrementY).toStrictEqual(true);
-  // });
+  it('CardinalPoint - can have mustIncrementY', () => {
+    const cardinalPoint: CardinalPoint.Class = new CardinalPoint.Class({
+      value: 'NORTH',
+      mustIncrementY: true,
+    });
+
+    expect(cardinalPoint.value).toStrictEqual('NORTH');
+    expect(cardinalPoint.mustIncrementY).toStrictEqual(true);
+  });
   // it('CardinalPoint - can have mustDecrementY', () => {
   //   const cardinalPoint: CardinalPoint.Class = new CardinalPoint.Class({
   //     value: 'SOUTH',
