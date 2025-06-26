@@ -10,9 +10,24 @@ describe('Compass', () => {
       Compass.Enum.WEST,
     ]);
   });
-  it('Compass - north should have mustIncrementY', () => {
+  it('Compass - north should increment Y', () => {
     const cardinalPoint: CardinalPoint.Class =
       Compass.Instance.getCardinalPoint(Compass.Enum.NORTH);
     expect(cardinalPoint.mustIncrementY).toBe(true);
+  });
+  it('Compass - east should increment X', () => {
+    const cardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.Enum.EAST);
+    expect(cardinalPoint.mustIncrementX).toBe(true);
+  });
+  it('Compass - south should decrement Y', () => {
+    const cardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.Enum.SOUTH);
+    expect(cardinalPoint.mustDecrementY).toBe(true);
+  });
+  it('Compass - west should decrement X', () => {
+    const cardinalPoint: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(Compass.Enum.WEST);
+    expect(cardinalPoint.mustDecrementX).toBe(true);
   });
 });

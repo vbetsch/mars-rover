@@ -34,15 +34,19 @@ export namespace Compass {
     cardinalPoints: [
       new CardinalPoint.Class({
         value: Enum.NORTH,
+        mustIncrementY: true,
       }),
       new CardinalPoint.Class({
         value: Enum.EAST,
+        mustIncrementX: true,
       }),
       new CardinalPoint.Class({
         value: Enum.SOUTH,
+        mustDecrementY: true,
       }),
       new CardinalPoint.Class({
         value: Enum.WEST,
+        mustDecrementX: true,
       }),
     ],
   });
