@@ -22,6 +22,12 @@ export namespace Compass {
     public get cardinalPoints(): string[] {
       return this._cardinalPoints.map((cardinalPoint) => cardinalPoint.value);
     }
+
+    public getCardinalPoint(cardinalPointValue: Enum): CardinalPoint.Class {
+      return this._cardinalPoints.filter(
+        (cardinalPoint) => cardinalPoint.value === cardinalPointValue
+      )[0];
+    }
   }
 
   export const Instance: Class = new Class({
