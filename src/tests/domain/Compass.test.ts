@@ -1,13 +1,14 @@
 import { CardinalPoint } from '@app/domain/CardinalPoint';
+import { Compass } from '@app/domain/Compass';
 
 describe('Compass', () => {
   it('Compass - should have cardinal points', () => {
     const compass: Compass.Class = new Compass.Class({
       cardinalPoints: [
-        new CardinalPoint({ value: 'N' }),
-        new CardinalPoint({ value: 'E' }),
-        new CardinalPoint({ value: 'S' }),
-        new CardinalPoint({ value: 'W' }),
+        new CardinalPoint.Class({ value: 'N' }),
+        new CardinalPoint.Class({ value: 'E' }),
+        new CardinalPoint.Class({ value: 'S' }),
+        new CardinalPoint.Class({ value: 'W' }),
       ],
     });
 
