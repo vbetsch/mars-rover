@@ -1,16 +1,13 @@
 import { CardinalPoint } from '@app/domain/CardinalPoint';
 
 export namespace Compass {
-  export type Params = {
-    readonly cardinalPoints: readonly CardinalPoint.Class[];
-  };
-
   export class Class {
-    private readonly _cardinalPoints: readonly CardinalPoint.Class[];
-
-    public constructor(params: Params) {
-      this._cardinalPoints = params.cardinalPoints;
-    }
+    private readonly _cardinalPoints: CardinalPoint.Class[] = [
+      new CardinalPoint.Class({ value: CardinalPoint.Enum.NORTH }),
+      new CardinalPoint.Class({ value: CardinalPoint.Enum.EAST }),
+      new CardinalPoint.Class({ value: CardinalPoint.Enum.SOUTH }),
+      new CardinalPoint.Class({ value: CardinalPoint.Enum.WEST }),
+    ];
 
     public getNorth(): CardinalPoint.Enum {
       return this._cardinalPoints[0].value;
