@@ -1,6 +1,13 @@
 import { CardinalPoint } from './cardinal-point';
 
 export namespace Compass {
+  export enum Enum {
+    NORTH = 'N',
+    EAST = 'E',
+    SOUTH = 'S',
+    WEST = 'W',
+  }
+
   export type Params = {
     readonly cardinalPoints: CardinalPoint.Class[];
   };
@@ -20,16 +27,16 @@ export namespace Compass {
   export const Instance: Class = new Class({
     cardinalPoints: [
       new CardinalPoint.Class({
-        value: 'N',
+        value: Enum.NORTH,
       }),
       new CardinalPoint.Class({
-        value: 'E',
+        value: Enum.EAST,
       }),
       new CardinalPoint.Class({
-        value: 'S',
+        value: Enum.SOUTH,
       }),
       new CardinalPoint.Class({
-        value: 'W',
+        value: Enum.WEST,
       }),
     ],
   });
