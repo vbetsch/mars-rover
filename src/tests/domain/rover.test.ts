@@ -6,17 +6,17 @@ import { CardinalPoint } from '@app/domain/cardinal-point';
 describe('Rover', () => {
   it('Rover - should have a starting point and a direction', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
-    const directionValue: Compass.CardinalPointEnum =
+    const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.EAST;
+    const direction: CardinalPoint.Class =
+      Compass.Instance.getCardinalPoint(cardinalPointValue);
     const rover: Rover.Class = new Rover.Class({
       startingPoint: point,
-      direction: new CardinalPoint.Class({
-        value: directionValue,
-      }),
+      direction: direction,
     });
 
     expect(rover.position).toStrictEqual(point);
-    expect(rover.direction.value).toStrictEqual(directionValue);
+    expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
   it('Rover - should move to north', () => {
     const directionValue: Compass.CardinalPointEnum =
