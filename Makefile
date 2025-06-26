@@ -22,4 +22,5 @@ build: node_modules
 
 # Aliases
 ci: lint tests
-.PHONY: ci
+ci_and_build: ci build
+.PHONY: ci ci_and_build
