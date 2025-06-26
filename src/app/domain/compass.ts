@@ -15,6 +15,12 @@ export namespace Compass {
   export class Class {
     private readonly _cardinalPoints: CardinalPoint.Class[];
 
+    private _getIndexOfCardinalPoint(
+      cardinalPoint: CardinalPoint.Class
+    ): number {
+      return this._cardinalPoints.indexOf(cardinalPoint);
+    }
+
     public constructor(params: Params) {
       this._cardinalPoints = params.cardinalPoints;
     }
@@ -29,6 +35,17 @@ export namespace Compass {
       return this._cardinalPoints.filter(
         (cardinalPoint) => cardinalPoint.value === cardinalPointValue
       )[0];
+    }
+
+    public getNextLeftCardinalPoint(
+      cardinalPoint: CardinalPoint.Class
+    ): CardinalPoint.Class {
+      let indexToFind: number =
+        this._getIndexOfCardinalPoint(cardinalPoint) - 1;
+      if (indexToFind < 0) {
+        indexToFind += this._cardinalPoints.length;
+      }
+      return this._cardinalPoints[indexToFind % this._cardinalPoints.length];
     }
   }
 
