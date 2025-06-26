@@ -47,6 +47,17 @@ export namespace Compass {
       }
       return this._cardinalPoints[indexToFind % this._cardinalPoints.length];
     }
+
+    public getNextRightCardinalPoint(
+      cardinalPoint: CardinalPoint.Class
+    ): CardinalPoint.Class {
+      let indexToFind: number =
+        this._getIndexOfCardinalPoint(cardinalPoint) + 1;
+      if (indexToFind < 0) {
+        indexToFind += this._cardinalPoints.length;
+      }
+      return this._cardinalPoints[indexToFind % this._cardinalPoints.length];
+    }
   }
 
   export const Instance: Class = new Class({
