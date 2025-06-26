@@ -1,4 +1,4 @@
-export enum CardinalPointsEnum {
+export enum DirectionsEnum {
   NORTH = 'N',
   EAST = 'E',
   SOUTH = 'S',
