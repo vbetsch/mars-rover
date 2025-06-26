@@ -1,5 +1,4 @@
 import { Point } from '@app/domain/point';
-import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 import { Compass } from '@app/domain/compass';
 import { CardinalPoint } from '@app/domain/cardinal-point';
 
@@ -48,57 +47,15 @@ export namespace Rover {
     }
 
     public turnLeft(): void {
-      switch (this._currentDirection.value) {
-        case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.WEST
-          );
-          break;
-        case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.NORTH
-          );
-          break;
-        case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.EAST
-          );
-          break;
-        case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.SOUTH
-          );
-          break;
-        default:
-          throw new UnknownDirectionError(this._currentDirection.value);
-      }
+      this._currentDirection = Compass.Instance.getNextLeftCardinalPoint(
+        this._currentDirection
+      );
     }
 
     public turnRight(): void {
-      switch (this._currentDirection.value) {
-        case Compass.CardinalPointEnum.NORTH:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.EAST
-          );
-          break;
-        case Compass.CardinalPointEnum.EAST:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.SOUTH
-          );
-          break;
-        case Compass.CardinalPointEnum.SOUTH:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.WEST
-          );
-          break;
-        case Compass.CardinalPointEnum.WEST:
-          this._currentDirection = Compass.Instance.getCardinalPoint(
-            Compass.CardinalPointEnum.NORTH
-          );
-          break;
-        default:
-          throw new UnknownDirectionError(this._currentDirection.value);
-      }
+      this._currentDirection = Compass.Instance.getNextRightCardinalPoint(
+        this._currentDirection
+      );
     }
   }
 }
