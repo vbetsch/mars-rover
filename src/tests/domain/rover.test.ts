@@ -1,5 +1,5 @@
-import { Point } from '@app/domain/Point';
-import { Rover } from '@app/domain/Rover';
+import { Point } from '@app/domain/point';
+import { Rover } from '@app/domain/rover';
 import { DirectionsEnum } from '@app/enums/directions.enum';
 
 describe('Rover', () => {

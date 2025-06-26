@@ -1,4 +1,4 @@
-import { Point } from '@app/domain/Point';
+import { Point } from '@app/domain/point';
 import { DirectionsEnum } from '@app/enums/directions.enum';
 import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 

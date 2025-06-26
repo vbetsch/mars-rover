@@ -1,4 +1,4 @@
-import { CardinalPoint } from './CardinalPoint';
+import { CardinalPoint } from './cardinal-point';
 
 export namespace Compass {
   export type Params = {

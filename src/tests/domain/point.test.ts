@@ -1,4 +1,4 @@
-import { Point } from '@app/domain/Point';
+import { Point } from '@app/domain/point';
 
 describe('Point', () => {
   it('Point - should have x and y', () => {

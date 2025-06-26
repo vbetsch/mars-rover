@@ -1,5 +1,5 @@
-import { CardinalPoint } from '@app/domain/CardinalPoint';
-import { Compass } from '@app/domain/Compass';
+import { CardinalPoint } from '@app/domain/cardinal-point';
+import { Compass } from '@app/domain/compass';
 
 describe('Compass', () => {
   it('Compass - should have cardinal points', () => {

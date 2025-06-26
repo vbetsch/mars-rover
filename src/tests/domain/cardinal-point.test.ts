@@ -1,4 +1,4 @@
-import { CardinalPoint } from '@app/domain/CardinalPoint';
+import { CardinalPoint } from '@app/domain/cardinal-point';
 
 describe('CardinalPoint', () => {
   it('CardinalPoint - should have a value', () => {
