@@ -3,7 +3,7 @@ import { DirectionsEnum } from '@app/enums/directions.enum';
 import { UnknownDirectionError } from '@app/errors/unknown-direction.error';
 
 export namespace Rover {
-  export type Type = {
+  export type Params = {
     readonly startingPoint: Point.Class;
     readonly direction: DirectionsEnum;
   };
@@ -12,7 +12,7 @@ export namespace Rover {
     private _currentPosition: Point.Class;
     private _currentDirection: DirectionsEnum;
 
-    public constructor(params: Type) {
+    public constructor(params: Params) {
       this._currentPosition = params.startingPoint;
       this._currentDirection = params.direction;
     }

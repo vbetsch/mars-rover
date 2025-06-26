@@ -2,7 +2,7 @@ import { Point } from '@app/domain/Point';
 
 describe('Point', () => {
   it('Point - should have x and y', () => {
-    const params: Point.Type = { x: 0, y: 0 };
+    const params: Point.Params = { x: 0, y: 0 };
     const point: Point.Class = new Point.Class(params);
 
     expect(point.x).toStrictEqual(params.x);

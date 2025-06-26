@@ -1,7 +1,7 @@
 import { NegativeCoordinateError } from '@app/errors/negative-coordinate.error';
 
 export namespace Point {
-  export type Type = {
+  export type Params = {
     readonly x: number;
     readonly y: number;
   };
@@ -10,7 +10,7 @@ export namespace Point {
     private readonly _x: number;
     private readonly _y: number;
 
-    public constructor(params: Type) {
+    public constructor(params: Params) {
       if (params.x < 0 || params.y < 0) {
         throw new NegativeCoordinateError();
       }
