@@ -1,7 +1,7 @@
 import { CardinalPoint } from './cardinal-point';
 
 export namespace Compass {
-  export enum Enum {
+  export enum CardinalPointEnum {
     NORTH = 'N',
     EAST = 'E',
     SOUTH = 'S',
@@ -23,7 +23,9 @@ export namespace Compass {
       return this._cardinalPoints.map((cardinalPoint) => cardinalPoint.value);
     }
 
-    public getCardinalPoint(cardinalPointValue: Enum): CardinalPoint.Class {
+    public getCardinalPoint(
+      cardinalPointValue: CardinalPointEnum
+    ): CardinalPoint.Class {
       return this._cardinalPoints.filter(
         (cardinalPoint) => cardinalPoint.value === cardinalPointValue
       )[0];
@@ -33,19 +35,19 @@ export namespace Compass {
   export const Instance: Class = new Class({
     cardinalPoints: [
       new CardinalPoint.Class({
-        value: Enum.NORTH,
+        value: CardinalPointEnum.NORTH,
         mustIncrementY: true,
       }),
       new CardinalPoint.Class({
-        value: Enum.EAST,
+        value: CardinalPointEnum.EAST,
         mustIncrementX: true,
       }),
       new CardinalPoint.Class({
-        value: Enum.SOUTH,
+        value: CardinalPointEnum.SOUTH,
         mustDecrementY: true,
       }),
       new CardinalPoint.Class({
-        value: Enum.WEST,
+        value: CardinalPointEnum.WEST,
         mustDecrementX: true,
       }),
     ],
