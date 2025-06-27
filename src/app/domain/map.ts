@@ -1,5 +1,4 @@
 import { Point } from '@app/domain/point';
-import { Obstacle } from '@app/domain/obstacle';
 
 export namespace Map {
   export const Values: Record<string, boolean> = {
@@ -11,14 +10,14 @@ export namespace Map {
     readonly height: number;
     readonly width: number;
     readonly roverPosition?: Point.Class;
-    readonly obstacles?: Obstacle.Class[];
+    readonly obstaclesPositions?: Point.Class[];
   };
 
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
     private _roverPosition: Point.Class | null;
-    private _obstacles: Obstacle.Class[] | null;
+    private _obstaclesPositions: Point.Class[] | null;
     private _matrix: boolean[][] = [];
 
     // eslint-disable-next-line max-params
@@ -44,7 +43,7 @@ export namespace Map {
       this._height = params.height;
       this._width = params.width;
       this._roverPosition = params.roverPosition ?? null;
-      this._obstacles = params.obstacles ?? null;
+      this._obstaclesPositions = params.obstaclesPositions ?? null;
       this._computeMatrix();
     }
 
@@ -69,12 +68,12 @@ export namespace Map {
       this._computeMatrix();
     }
 
-    public get obstacles(): Obstacle.Class[] | null {
-      return this._obstacles;
+    public get obstaclesPositions(): Point.Class[] | null {
+      return this._obstaclesPositions;
     }
 
-    public set obstacles(value: Obstacle.Class[] | null) {
-      this._obstacles = value;
+    public set obstaclesPositions(value: Point.Class[] | null) {
+      this._obstaclesPositions = value;
       this._computeMatrix();
     }
   }

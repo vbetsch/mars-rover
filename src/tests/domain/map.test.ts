@@ -1,6 +1,5 @@
 import { Map } from '@app/domain/map';
 import { Point } from '@app/domain/point';
-import { Obstacle } from '@app/domain/obstacle';
 
 describe('Map', () => {
   it('Map - should have the size set and not the rover position or obstacles', () => {
@@ -14,7 +13,7 @@ describe('Map', () => {
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
     expect(map.roverPosition).toStrictEqual(null);
-    expect(map.obstacles).toStrictEqual(null);
+    expect(map.obstaclesPositions).toStrictEqual(null);
   });
   it('Map - should return his matrix - 3x3', () => {
     const size: number = 3;
@@ -114,21 +113,21 @@ describe('Map', () => {
       [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
-  it('Map - can have obstacles', () => {
+  it('Map - can have obstacles positions', () => {
     const size: number = 5;
-    const obstacles: Obstacle.Class[] = [
-      new Obstacle.Class({
-        position: new Point.Class({ x: 2, y: 3 }),
-      }),
+    const obstaclesPositions: Point.Class[] = [
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 2, y: 3 }),
+      new Point.Class({ x: 3, y: 3 }),
     ];
     const map: Map.Class = new Map.Class({
       height: size,
       width: size,
-      obstacles: obstacles,
+      obstaclesPositions: obstaclesPositions,
     });
 
     expect(map.height).toBe(size);
     expect(map.width).toBe(size);
-    expect(map.obstacles).toStrictEqual(obstacles);
+    expect(map.obstaclesPositions).toStrictEqual(obstaclesPositions);
   });
 });
