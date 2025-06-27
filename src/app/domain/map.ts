@@ -6,13 +6,13 @@ export namespace Map {
   export type Params = {
     readonly height: number;
     readonly width: number;
-    readonly rover?: Point.Class;
+    readonly roverPosition?: Point.Class;
   };
 
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
-    private readonly _rover: Point.Class | null;
+    private readonly _roverPosition: Point.Class | null;
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
@@ -30,7 +30,7 @@ export namespace Map {
     public constructor(params: Params) {
       this._height = params.height;
       this._width = params.width;
-      this._rover = params.rover ?? null;
+      this._roverPosition = params.roverPosition ?? null;
       this._computeMatrix();
     }
 
@@ -46,8 +46,8 @@ export namespace Map {
       return this._matrix;
     }
 
-    public get rover(): Point.Class | null {
-      return this._rover;
+    public get roverPosition(): Point.Class | null {
+      return this._roverPosition;
     }
   }
 }

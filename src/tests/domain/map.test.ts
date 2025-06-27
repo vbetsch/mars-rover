@@ -12,7 +12,7 @@ describe('Map', () => {
 
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
-    expect(map.rover).toStrictEqual(null);
+    expect(map.roverPosition).toStrictEqual(null);
   });
   it('Map - should return his matrix - 3x3', () => {
     const size: number = 3;
@@ -47,11 +47,11 @@ describe('Map', () => {
     const map: Map.Class = new Map.Class({
       height: height,
       width: width,
-      rover: roverPosition,
+      roverPosition: roverPosition,
     });
 
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
-    expect(map.rover).toStrictEqual(roverPosition);
+    expect(map.roverPosition).toStrictEqual(roverPosition);
   });
 });
