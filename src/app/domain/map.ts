@@ -17,7 +17,9 @@ export namespace Map {
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
+      // eslint-disable-next-line max-params
       this._matrix = Array.from({ length: this.height }, (_, y) =>
+        // eslint-disable-next-line max-params
         Array.from({ length: this.width }, (_, x) => {
           return this._roverPosition &&
             x === this._roverPosition.x - 1 &&
