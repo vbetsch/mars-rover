@@ -72,4 +72,18 @@ describe('Map', () => {
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
     ]);
   });
+  it('Map - should be able to change rover position', () => {
+    const roverPositionA: Point.Class = new Point.Class({ x: 2, y: 3 });
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      roverPosition: roverPositionA,
+    });
+
+    expect(map.roverPosition).toStrictEqual(roverPositionA);
+
+    const roverPositionB: Point.Class = new Point.Class({ x: 3, y: 3 });
+    map.roverPosition = roverPositionB;
+    expect(map.roverPosition).toStrictEqual(roverPositionB);
+  });
 });
