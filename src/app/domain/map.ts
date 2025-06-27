@@ -1,14 +1,18 @@
+import { Rover } from '@app/domain/rover';
+
 export namespace Map {
   export const NOTHING: boolean = false;
 
   export type Params = {
     readonly height: number;
     readonly width: number;
+    readonly rover?: Rover.Class;
   };
 
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
+    private readonly _rover: Rover.Class | null;
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
@@ -26,6 +30,7 @@ export namespace Map {
     public constructor(params: Params) {
       this._height = params.height;
       this._width = params.width;
+      this._rover = params.rover ?? null;
       this._computeMatrix();
     }
 
@@ -39,6 +44,10 @@ export namespace Map {
 
     public get matrix(): boolean[][] {
       return this._matrix;
+    }
+
+    public get rover(): Rover.Class | null {
+      return this._rover;
     }
   }
 }
