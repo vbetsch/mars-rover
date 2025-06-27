@@ -22,5 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm clean-install
 
-      - name: Run tests
-        run: npm test
+      - name: Run tests (with coverage on master)
+        run: |
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            npm run test:cov
+          else
+            npm test
+          fi
