@@ -18,6 +18,7 @@ export namespace Map {
     private _roverPosition: Point.Class | null;
     private _matrix: boolean[][] = [];
 
+    // eslint-disable-next-line max-params
     private _areSameCoordinate(internal: number, external: number): boolean {
       return internal === external - 1;
     }
