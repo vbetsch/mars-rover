@@ -18,14 +18,18 @@ export namespace Map {
     private _roverPosition: Point.Class | null;
     private _matrix: boolean[][] = [];
 
+    private _areSameCoordinate(a: number, b: number): boolean {
+      return a === b - 1;
+    }
+
     private _computeMatrix(): void {
       // eslint-disable-next-line max-params
       this._matrix = Array.from({ length: this.height }, (_, y) =>
         // eslint-disable-next-line max-params
         Array.from({ length: this.width }, (_, x) => {
           return this._roverPosition &&
-            x === this._roverPosition.x - 1 &&
-            y === this._roverPosition.y - 1
+            this._areSameCoordinate(x, this._roverPosition.x) &&
+            this._areSameCoordinate(y, this._roverPosition.y)
             ? Values.ROVER
             : Values.NOTHING;
         })
