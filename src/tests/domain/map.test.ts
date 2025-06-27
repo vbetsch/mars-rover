@@ -86,4 +86,30 @@ describe('Map', () => {
     map.roverPosition = roverPositionB;
     expect(map.roverPosition).toStrictEqual(roverPositionB);
   });
+  it('Map - should compute matrix for each position change', () => {
+    const roverPositionA: Point.Class = new Point.Class({ x: 2, y: 3 });
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      roverPosition: roverPositionA,
+    });
+
+    expect(map.roverPosition).toStrictEqual(roverPositionA);
+    expect(map.matrix).toStrictEqual([
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.ROVER, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+    ]);
+
+    const roverPositionB: Point.Class = new Point.Class({ x: 3, y: 3 });
+    map.roverPosition = roverPositionB;
+    expect(map.roverPosition).toStrictEqual(roverPositionB);
+    expect(map.matrix).toStrictEqual([
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.ROVER],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+    ]);
+  });
 });
