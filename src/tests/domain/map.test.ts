@@ -67,8 +67,8 @@ describe('Map', () => {
     expect(map.roverPosition).toStrictEqual(roverPosition);
     expect(map.matrix).toStrictEqual([
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.ROVER, Map.NOTHING],
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.ROVER, Map.NOTHING],
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
     ]);
   });
