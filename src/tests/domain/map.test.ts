@@ -56,4 +56,20 @@ describe('Map', () => {
     expect(map.width).toBe(width);
     expect(map.roverPosition).toStrictEqual(roverPosition);
   });
+  it('Map - should return his matrix with a Rover', () => {
+    const roverPosition: Point.Class = new Point.Class({ x: 2, y: 3 });
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      roverPosition: roverPosition,
+    });
+
+    expect(map.roverPosition).toStrictEqual(roverPosition);
+    expect(map.matrix).toStrictEqual([
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.ROVER, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+    ]);
+  });
 });
