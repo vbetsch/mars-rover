@@ -21,6 +21,8 @@ describe('Map', () => {
       width: size,
     });
 
+    expect(map.height).toBe(size);
+    expect(map.width).toBe(size);
     expect(map.matrix).toStrictEqual([
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
