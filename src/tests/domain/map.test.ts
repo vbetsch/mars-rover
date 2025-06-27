@@ -57,7 +57,7 @@ describe('Map', () => {
     expect(map.roverPosition).toStrictEqual(roverPosition);
   });
   it('Map - should return his matrix with a Rover', () => {
-    const roverPosition: Point.Class = new Point.Class({ x: 2, y: 3 });
+    const roverPosition: Point.Class = new Point.Class({ x: 2 - 1, y: 3 - 1 });
     const map: Map.Class = new Map.Class({
       height: 4,
       width: 3,
