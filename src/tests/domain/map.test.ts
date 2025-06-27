@@ -12,7 +12,7 @@ describe('Map', () => {
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
   });
-  it('Map - should return his matrix', () => {
+  it('Map - should return his matrix - 3x3', () => {
     const size: number = 3;
     const map: Map.Class = new Map.Class({
       height: size,
@@ -20,6 +20,19 @@ describe('Map', () => {
     });
 
     expect(map.matrix).toStrictEqual([
+      ['X', 'X', 'X'],
+      ['X', 'X', 'X'],
+      ['X', 'X', 'X'],
+    ]);
+  });
+  it('Map - should return his matrix - 4x3', () => {
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+    });
+
+    expect(map.matrix).toStrictEqual([
+      ['X', 'X', 'X'],
       ['X', 'X', 'X'],
       ['X', 'X', 'X'],
       ['X', 'X', 'X'],
