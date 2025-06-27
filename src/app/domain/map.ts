@@ -1,4 +1,6 @@
 export namespace Map {
+  export const NOTHING: boolean = false;
+
   export type Params = {
     readonly height: number;
     readonly width: number;
@@ -7,14 +9,14 @@ export namespace Map {
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
-    private _matrix: string[][] = [];
+    private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
-      const matrix: string[][] = [];
+      const matrix: boolean[][] = [];
       for (let y = 0; y < this.height; y++) {
-        const line: string[] = [];
+        const line: boolean[] = [];
         for (let x = 0; x < this.width; x++) {
-          line.push('X');
+          line.push(NOTHING);
         }
         matrix.push(line);
       }
@@ -35,7 +37,7 @@ export namespace Map {
       return this._width;
     }
 
-    public get matrix(): string[][] {
+    public get matrix(): boolean[][] {
       return this._matrix;
     }
   }

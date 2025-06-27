@@ -20,9 +20,9 @@ describe('Map', () => {
     });
 
     expect(map.matrix).toStrictEqual([
-      ['X', 'X', 'X'],
-      ['X', 'X', 'X'],
-      ['X', 'X', 'X'],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
     ]);
   });
   it('Map - should return his matrix - 4x3', () => {
@@ -32,10 +32,10 @@ describe('Map', () => {
     });
 
     expect(map.matrix).toStrictEqual([
-      ['X', 'X', 'X'],
-      ['X', 'X', 'X'],
-      ['X', 'X', 'X'],
-      ['X', 'X', 'X'],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
     ]);
   });
 });
