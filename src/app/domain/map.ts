@@ -13,7 +13,7 @@ export namespace Map {
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
-    private readonly _roverPosition: Point.Class | null;
+    private _roverPosition: Point.Class | null;
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
@@ -51,6 +51,10 @@ export namespace Map {
 
     public get roverPosition(): Point.Class | null {
       return this._roverPosition;
+    }
+
+    public set roverPosition(value: Point.Class | null) {
+      this._roverPosition = value;
     }
   }
 }
