@@ -4,7 +4,7 @@ import { Point } from '@app/domain/point';
 import { Compass } from '@app/domain/compass';
 
 describe('Map', () => {
-  it('Map - should have the size set and not the rover', () => {
+  it('Map - should have the size set and not the rover position', () => {
     const height: number = 5;
     const width: number = 4;
     const map: Map.Class = new Map.Class({
@@ -42,23 +42,18 @@ describe('Map', () => {
       [Map.NOTHING, Map.NOTHING, Map.NOTHING],
     ]);
   });
-  it('Map - can have a Rover', () => {
+  it('Map - can have a Rover position', () => {
     const height: number = 5;
     const width: number = 4;
-    const rover: Rover.Class = new Rover.Class({
-      startingPoint: new Point.Class({ x: 0, y: 0 }),
-      direction: Compass.Instance.getCardinalPoint(
-        Compass.CardinalPointEnum.EAST
-      ),
-    });
+    const roverPosition: Point.Class = new Point.Class({ x: 0, y: 0 });
     const map: Map.Class = new Map.Class({
       height: height,
       width: width,
-      rover: rover,
+      rover: roverPosition,
     });
 
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
-    expect(map.rover).toStrictEqual(rover);
+    expect(map.rover).toStrictEqual(roverPosition);
   });
 });
