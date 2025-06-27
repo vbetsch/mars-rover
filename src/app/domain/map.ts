@@ -1,4 +1,4 @@
-import { Rover } from '@app/domain/rover';
+import { Point } from '@app/domain/point';
 
 export namespace Map {
   export const NOTHING: boolean = false;
@@ -6,13 +6,13 @@ export namespace Map {
   export type Params = {
     readonly height: number;
     readonly width: number;
-    readonly rover?: Rover.Class;
+    readonly rover?: Point.Class;
   };
 
   export class Class {
     private readonly _height: number;
     private readonly _width: number;
-    private readonly _rover: Rover.Class | null;
+    private readonly _rover: Point.Class | null;
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
@@ -46,7 +46,7 @@ export namespace Map {
       return this._matrix;
     }
 
-    public get rover(): Rover.Class | null {
+    public get rover(): Point.Class | null {
       return this._rover;
     }
   }

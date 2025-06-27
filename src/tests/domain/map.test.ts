@@ -1,7 +1,5 @@
 import { Map } from '@app/domain/map';
-import { Rover } from '@app/domain/rover';
 import { Point } from '@app/domain/point';
-import { Compass } from '@app/domain/compass';
 
 describe('Map', () => {
   it('Map - should have the size set and not the rover position', () => {
