@@ -18,8 +18,8 @@ export namespace Map {
     private _roverPosition: Point.Class | null;
     private _matrix: boolean[][] = [];
 
-    private _areSameCoordinate(a: number, b: number): boolean {
-      return a === b - 1;
+    private _areSameCoordinate(internal: number, external: number): boolean {
+      return internal === external - 1;
     }
 
     private _computeMatrix(): void {
