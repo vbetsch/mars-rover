@@ -2,6 +2,7 @@ import { Point } from '@app/domain/point';
 
 export namespace Map {
   export const NOTHING: boolean = false;
+  export const ROVER: boolean = true;
 
   export type Params = {
     readonly height: number;
@@ -16,8 +17,14 @@ export namespace Map {
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
-      this._matrix = Array.from({ length: this.height }, () =>
-        Array.from({ length: this.width }, () => NOTHING)
+      this._matrix = Array.from({ length: this.height }, (_, y) =>
+        Array.from({ length: this.width }, (_, x) => {
+          return this._roverPosition &&
+            x === this._roverPosition.x &&
+            y === this._roverPosition.y
+            ? ROVER
+            : NOTHING;
+        })
       );
     }
 
