@@ -16,15 +16,9 @@ export namespace Map {
     private _matrix: boolean[][] = [];
 
     private _computeMatrix(): void {
-      const matrix: boolean[][] = [];
-      for (let y = 0; y < this.height; y++) {
-        const line: boolean[] = [];
-        for (let x = 0; x < this.width; x++) {
-          line.push(NOTHING);
-        }
-        matrix.push(line);
-      }
-      this._matrix = matrix;
+      this._matrix = Array.from({ length: this.height }, () =>
+        Array.from({ length: this.width }, () => NOTHING)
+      );
     }
 
     public constructor(params: Params) {
