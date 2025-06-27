@@ -1,3 +1,5 @@
+import { Map } from '@app/domain/map';
+
 describe('Map', () => {
   it('Map - should have the size set', () => {
     const height: number = 5;
