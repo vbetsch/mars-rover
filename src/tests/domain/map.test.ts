@@ -12,4 +12,17 @@ describe('Map', () => {
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
   });
+  it('Map - should return his matrix', () => {
+    const size: number = 3;
+    const map: Map.Class = new Map.Class({
+      height: size,
+      width: size,
+    });
+
+    expect(map.matrix).toStrictEqual([
+      ['X', 'X', 'X'],
+      ['X', 'X', 'X'],
+      ['X', 'X', 'X'],
+    ]);
+  });
 });
