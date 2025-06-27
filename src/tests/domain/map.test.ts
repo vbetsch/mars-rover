@@ -174,4 +174,38 @@ describe('Map', () => {
     map.obstaclesPositions = obstaclesPositionsB;
     expect(map.obstaclesPositions).toStrictEqual(obstaclesPositionsB);
   });
+  it('Map - should compute matrix for each obstacles change', () => {
+    const obstaclesPositionsA: Point.Class[] = [
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 2, y: 3 }),
+      new Point.Class({ x: 2, y: 2 }),
+    ];
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      obstaclesPositions: obstaclesPositionsA,
+    });
+
+    expect(map.obstaclesPositions).toStrictEqual(obstaclesPositionsA);
+    expect(map.matrix).toStrictEqual([
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.OBSTACLE, Map.Values.NOTHING],
+      [Map.Values.OBSTACLE, Map.Values.OBSTACLE, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+    ]);
+
+    const obstaclesPositionsB: Point.Class[] = [
+      new Point.Class({ x: 3, y: 3 }),
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 3, y: 2 }),
+    ];
+    map.obstaclesPositions = obstaclesPositionsB;
+    expect(map.obstaclesPositions).toStrictEqual(obstaclesPositionsB);
+    expect(map.matrix).toStrictEqual([
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.OBSTACLE],
+      [Map.Values.OBSTACLE, Map.Values.NOTHING, Map.Values.OBSTACLE],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+    ]);
+  });
 });
