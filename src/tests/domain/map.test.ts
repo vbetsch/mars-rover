@@ -130,4 +130,24 @@ describe('Map', () => {
     expect(map.width).toBe(size);
     expect(map.obstaclesPositions).toStrictEqual(obstaclesPositions);
   });
+  it('Map - should return his matrix with obstacles', () => {
+    const obstaclesPositions: Point.Class[] = [
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 2, y: 3 }),
+      new Point.Class({ x: 2, y: 2 }),
+    ];
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      obstaclesPositions: obstaclesPositions,
+    });
+
+    expect(map.roverPosition).toStrictEqual(roverPosition);
+    expect(map.matrix).toStrictEqual([
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.OBSTACLE, Map.Values.NOTHING],
+      [Map.Values.OBSTACLE, Map.Values.OBSTACLE, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+    ]);
+  });
 });
