@@ -152,4 +152,26 @@ describe('Map', () => {
       [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
+  it('Map - should be able to change obstacles positions', () => {
+    const obstaclesPositionsA: Point.Class[] = [
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 2, y: 3 }),
+      new Point.Class({ x: 2, y: 2 }),
+    ];
+    const map: Map.Class = new Map.Class({
+      height: 4,
+      width: 3,
+      obstaclesPositions: obstaclesPositionsA,
+    });
+
+    expect(map.obstaclesPositions).toStrictEqual(obstaclesPositionsA);
+
+    const obstaclesPositionsB: Point.Class[] = [
+      new Point.Class({ x: 3, y: 3 }),
+      new Point.Class({ x: 1, y: 3 }),
+      new Point.Class({ x: 3, y: 2 }),
+    ];
+    map.obstaclesPositions = obstaclesPositionsB;
+    expect(map.obstaclesPositions).toStrictEqual(obstaclesPositionsB);
+  });
 });
