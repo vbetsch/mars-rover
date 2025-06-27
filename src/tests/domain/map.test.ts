@@ -4,7 +4,7 @@ import { Point } from '@app/domain/point';
 import { Compass } from '@app/domain/compass';
 
 describe('Map', () => {
-  it('Map - should have the size set', () => {
+  it('Map - should have the size set and not the rover', () => {
     const height: number = 5;
     const width: number = 4;
     const map: Map.Class = new Map.Class({
@@ -14,6 +14,7 @@ describe('Map', () => {
 
     expect(map.height).toBe(height);
     expect(map.width).toBe(width);
+    expect(map.rover).toStrictEqual(null);
   });
   it('Map - should return his matrix - 3x3', () => {
     const size: number = 3;
