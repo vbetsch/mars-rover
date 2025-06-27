@@ -20,8 +20,8 @@ export namespace Map {
       this._matrix = Array.from({ length: this.height }, (_, y) =>
         Array.from({ length: this.width }, (_, x) => {
           return this._roverPosition &&
-            x === this._roverPosition.x &&
-            y === this._roverPosition.y
+            x === this._roverPosition.x - 1 &&
+            y === this._roverPosition.y - 1
             ? ROVER
             : NOTHING;
         })
