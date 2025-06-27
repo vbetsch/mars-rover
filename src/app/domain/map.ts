@@ -1,8 +1,10 @@
 import { Point } from '@app/domain/point';
 
 export namespace Map {
-  export const NOTHING: boolean = false;
-  export const ROVER: boolean = true;
+  export const Values: Record<string, boolean> = {
+    NOTHING: false,
+    ROVER: true,
+  };
 
   export type Params = {
     readonly height: number;
@@ -24,8 +26,8 @@ export namespace Map {
           return this._roverPosition &&
             x === this._roverPosition.x - 1 &&
             y === this._roverPosition.y - 1
-            ? ROVER
-            : NOTHING;
+            ? Values.ROVER
+            : Values.NOTHING;
         })
       );
     }

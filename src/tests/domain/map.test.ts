@@ -24,9 +24,9 @@ describe('Map', () => {
     expect(map.height).toBe(size);
     expect(map.width).toBe(size);
     expect(map.matrix).toStrictEqual([
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
   it('Map - should return his matrix - 4x3', () => {
@@ -36,10 +36,10 @@ describe('Map', () => {
     });
 
     expect(map.matrix).toStrictEqual([
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
   it('Map - can have a Rover position', () => {
@@ -66,10 +66,10 @@ describe('Map', () => {
 
     expect(map.roverPosition).toStrictEqual(roverPosition);
     expect(map.matrix).toStrictEqual([
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.ROVER, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.ROVER, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
   it('Map - should be able to change rover position', () => {
@@ -96,20 +96,20 @@ describe('Map', () => {
 
     expect(map.roverPosition).toStrictEqual(roverPositionA);
     expect(map.matrix).toStrictEqual([
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.ROVER, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.ROVER, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
 
     const roverPositionB: Point.Class = new Point.Class({ x: 3, y: 3 });
     map.roverPosition = roverPositionB;
     expect(map.roverPosition).toStrictEqual(roverPositionB);
     expect(map.matrix).toStrictEqual([
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
-      [Map.NOTHING, Map.NOTHING, Map.ROVER],
-      [Map.NOTHING, Map.NOTHING, Map.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.ROVER],
+      [Map.Values.NOTHING, Map.Values.NOTHING, Map.Values.NOTHING],
     ]);
   });
 });
