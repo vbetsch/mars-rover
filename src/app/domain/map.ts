@@ -1,9 +1,10 @@
 import { Point } from '@app/domain/point';
 
 export namespace Map {
-  export const Values: Record<string, boolean> = {
-    NOTHING: false,
-    ROVER: true,
+  export const Values: Record<string, number> = {
+    NOTHING: 0,
+    ROVER: 1,
+    OBSTACLE: 2,
   };
 
   export type Params = {
@@ -18,7 +19,7 @@ export namespace Map {
     private readonly _width: number;
     private _roverPosition: Point.Class | null;
     private _obstaclesPositions: Point.Class[] | null;
-    private _matrix: boolean[][] = [];
+    private _matrix: number[][] = [];
 
     // eslint-disable-next-line max-params
     private _areSameCoordinate(internal: number, external: number): boolean {
@@ -30,11 +31,24 @@ export namespace Map {
       this._matrix = Array.from({ length: this.height }, (_, y) =>
         // eslint-disable-next-line max-params
         Array.from({ length: this.width }, (_, x) => {
-          return this._roverPosition &&
+          if (
+            this._roverPosition &&
             this._areSameCoordinate(x, this._roverPosition.x) &&
             this._areSameCoordinate(y, this._roverPosition.y)
-            ? Values.ROVER
-            : Values.NOTHING;
+          )
+            return Values.ROVER;
+          if (this._obstaclesPositions) {
+            if (
+              this._obstaclesPositions?.some(
+                (obstaclePosition) =>
+                  this._areSameCoordinate(x, obstaclePosition.x) &&
+                  this._areSameCoordinate(y, obstaclePosition.y)
+              )
+            ) {
+              return Values.OBSTACLE;
+            }
+          }
+          return Values.NOTHING;
         })
       );
     }
@@ -55,7 +69,7 @@ export namespace Map {
       return this._width;
     }
 
-    public get matrix(): boolean[][] {
+    public get matrix(): number[][] {
       return this._matrix;
     }
 
