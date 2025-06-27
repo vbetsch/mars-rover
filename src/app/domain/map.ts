@@ -55,6 +55,7 @@ export namespace Map {
 
     public set roverPosition(value: Point.Class | null) {
       this._roverPosition = value;
+      this._computeMatrix();
     }
   }
 }
