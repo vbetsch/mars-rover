@@ -14,4 +14,12 @@ module.exports = {
     '^@app/(.*)$': '<rootDir>/src/app/$1',
     '^@tests/(.*)$': '<rootDir>/src/tests/$1',
   },
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
 };
