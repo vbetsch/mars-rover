@@ -1,4 +1,5 @@
 import { Point } from '@app/domain/point';
+import { Obstacle } from '@app/domain/obstacle';
 
 describe('Obstacle', () => {
   it('Obstacle - should have a position', () => {
