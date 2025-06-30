@@ -14,7 +14,7 @@ describe('MovementPolicy', () => {
 
     expect(policy.map).toStrictEqual(map);
   });
-  it('MovementPolicy - should not allow to move - both exceed', () => {
+  it('MovementPolicy - should not allow to move - BOUNDARY - both exceed', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -34,7 +34,7 @@ describe('MovementPolicy', () => {
       reason: MovementPolicy.MoveResultReasons.BOUNDARY,
     });
   });
-  it('MovementPolicy - should not allow to move - only x exceed', () => {
+  it('MovementPolicy - should not allow to move - BOUNDARY - only x exceed', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -54,7 +54,7 @@ describe('MovementPolicy', () => {
       reason: MovementPolicy.MoveResultReasons.BOUNDARY,
     });
   });
-  it('MovementPolicy - should not allow to move - only y exceed', () => {
+  it('MovementPolicy - should not allow to move - BOUNDARY - only y exceed', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -74,7 +74,7 @@ describe('MovementPolicy', () => {
       reason: MovementPolicy.MoveResultReasons.BOUNDARY,
     });
   });
-  it('MovementPolicy - should allow to move - both on the boundary', () => {
+  it('MovementPolicy - should allow to move - BOUNDARY - both on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -93,7 +93,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should allow to move - y is on the boundary', () => {
+  it('MovementPolicy - should allow to move - BOUNDARY - y is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -112,7 +112,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should allow to move - x is on the boundary', () => {
+  it('MovementPolicy - should allow to move - BOUNDARY - x is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -131,7 +131,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should allow to move - normal case', () => {
+  it('MovementPolicy - should allow to move - BOUNDARY - normal case', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -150,7 +150,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should not allow to move - exactly on a obstacle', () => {
+  it('MovementPolicy - should not allow to move - OBSTACLE - exactly on a obstacle', () => {
     const obstaclePosition: Point.Class = new Point.Class({
       x: 2,
       y: 2,
@@ -168,7 +168,7 @@ describe('MovementPolicy', () => {
       reason: MovementPolicy.MoveResultReasons.OBSTACLE,
     });
   });
-  it('MovementPolicy - should allow to move - just x same as obstacle', () => {
+  it('MovementPolicy - should allow to move - OBSTACLE - just x same as obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -193,7 +193,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should allow to move - just y same as obstacle', () => {
+  it('MovementPolicy - should allow to move - OBSTACLE - just y same as obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -218,7 +218,7 @@ describe('MovementPolicy', () => {
       allowed: true,
     });
   });
-  it('MovementPolicy - should allow to move - not on a obstacle', () => {
+  it('MovementPolicy - should allow to move - OBSTACLE - not on a obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
