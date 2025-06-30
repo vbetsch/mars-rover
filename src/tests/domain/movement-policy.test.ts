@@ -133,4 +133,88 @@ describe('MovementPolicy', () => {
       )
     ).toBe(true);
   });
+  it('MovementPolicy - should not allow to move - exactly on a obstacle', () => {
+    const obstaclePosition: Point.Class = new Point.Class({
+      x: 2,
+      y: 2,
+    });
+    const policy: MovementPolicy.Class = new MovementPolicy.Class({
+      map: new Map.Class({
+        height: 3,
+        width: 3,
+        obstaclesPositions: [obstaclePosition],
+      }),
+    });
+
+    expect(policy.isMoveAllowed(obstaclePosition)).toBe(false);
+  });
+  it('MovementPolicy - should allow to move - just x same as obstacle', () => {
+    const policy: MovementPolicy.Class = new MovementPolicy.Class({
+      map: new Map.Class({
+        height: 3,
+        width: 3,
+        obstaclesPositions: [
+          new Point.Class({
+            x: 1,
+            y: 2,
+          }),
+        ],
+      }),
+    });
+
+    expect(
+      policy.isMoveAllowed(
+        new Point.Class({
+          x: 1,
+          y: 3,
+        })
+      )
+    ).toBe(true);
+  });
+  it('MovementPolicy - should allow to move - just y same as obstacle', () => {
+    const policy: MovementPolicy.Class = new MovementPolicy.Class({
+      map: new Map.Class({
+        height: 3,
+        width: 3,
+        obstaclesPositions: [
+          new Point.Class({
+            x: 1,
+            y: 2,
+          }),
+        ],
+      }),
+    });
+
+    expect(
+      policy.isMoveAllowed(
+        new Point.Class({
+          x: 3,
+          y: 2,
+        })
+      )
+    ).toBe(true);
+  });
+  it('MovementPolicy - should allow to move - not on a obstacle', () => {
+    const policy: MovementPolicy.Class = new MovementPolicy.Class({
+      map: new Map.Class({
+        height: 3,
+        width: 3,
+        obstaclesPositions: [
+          new Point.Class({
+            x: 1,
+            y: 2,
+          }),
+        ],
+      }),
+    });
+
+    expect(
+      policy.isMoveAllowed(
+        new Point.Class({
+          x: 3,
+          y: 3,
+        })
+      )
+    ).toBe(true);
+  });
 });
