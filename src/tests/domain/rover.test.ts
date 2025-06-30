@@ -1,6 +1,8 @@
 import { Point } from '@app/domain/point';
 import { Rover } from '@app/domain/rover';
 import { Compass } from '@app/domain/compass';
+import { MovementPolicy } from '@app/domain/movement-policy';
+import { Map } from '@app/domain/map';
 
 describe('Rover', () => {
   it('Rover - should have a starting point and a direction', () => {
@@ -67,7 +69,7 @@ describe('Rover', () => {
     expect(rover.position).toStrictEqual(new Point.Class({ x: 0, y: 1 }));
     expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
-  it('Rover - should not move', () => {
+  it('Rover - should not move - negative coordinates', () => {
     const errorMessage: string = 'Coordinates must be non-negative';
 
     let rover: Rover.Class = new Rover.Class({
@@ -84,6 +86,58 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(errorMessage);
+  });
+  it('Rover - should not move - outside borders - x', () => {
+    const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
+      startingPoint: new Point.Class({ x: 3, y: 3 }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.EAST
+      ),
+    });
+    expect(() => rover.moveForward()).toThrow(
+      MovementPolicy.MoveResultReasons.BOUNDARY
+    );
+  });
+  it('Rover - should not move - outside borders - y', () => {
+    const rover = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
+      startingPoint: new Point.Class({ x: 3, y: 3 }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.NORTH
+      ),
+    });
+    expect(() => rover.moveForward()).toThrow(
+      MovementPolicy.MoveResultReasons.BOUNDARY
+    );
+  });
+  it('Rover - should not move - on a obstacle', () => {
+    const rover = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+          obstaclesPositions: [new Point.Class({ x: 2, y: 2 })],
+        }),
+      }),
+      startingPoint: new Point.Class({ x: 2, y: 1 }),
+      direction: Compass.Instance.getCardinalPoint(
+        Compass.CardinalPointEnum.NORTH
+      ),
+    });
+    expect(() => rover.moveForward()).toThrow(
+      MovementPolicy.MoveResultReasons.BOUNDARY
+    );
   });
   it('Rover - should turn left - from south to east', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
