@@ -12,7 +12,7 @@ export namespace Compass {
     readonly cardinalPoints: CardinalPoint.Class[];
   };
 
-  export class Class {
+  class Class {
     private readonly _cardinalPoints: CardinalPoint.Class[];
 
     private _getIndexOfCardinalPoint(
