@@ -3,6 +3,8 @@ import { Rover } from '@app/domain/rover';
 import { Compass } from '@app/domain/compass';
 import { MovementPolicy } from '@app/domain/movement-policy';
 import { Map } from '@app/domain/map';
+import { CannotMoveError } from '@app/errors/cannot-move.error';
+import { NegativeCoordinateError } from '@app/errors/negative-coordinate.error';
 
 describe('Rover', () => {
   it('Rover - should have a starting point and a direction', () => {
@@ -100,8 +102,6 @@ describe('Rover', () => {
     expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
   it('Rover - should not move - negative coordinates', () => {
-    const errorMessage: string = 'Coordinates must be non-negative';
-
     let rover: Rover.Class = new Rover.Class({
       movementPolicy: new MovementPolicy.Class({
         map: new Map.Class({
@@ -114,7 +114,7 @@ describe('Rover', () => {
         Compass.CardinalPointEnum.SOUTH
       ),
     });
-    expect(() => rover.moveForward()).toThrow(errorMessage);
+    expect(() => rover.moveForward()).toThrow(new NegativeCoordinateError());
     rover = new Rover.Class({
       movementPolicy: new MovementPolicy.Class({
         map: new Map.Class({
@@ -127,7 +127,7 @@ describe('Rover', () => {
         Compass.CardinalPointEnum.WEST
       ),
     });
-    expect(() => rover.moveForward()).toThrow(errorMessage);
+    expect(() => rover.moveForward()).toThrow(new NegativeCoordinateError());
   });
   it('Rover - should not move - outside borders - x', () => {
     const rover: Rover.Class = new Rover.Class({
@@ -143,7 +143,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      "You cannot move to this position. You've reached the map's limits."
+      new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.BOUNDARY)
     );
   });
   it('Rover - should not move - outside borders - y', () => {
@@ -160,7 +160,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      "You cannot move to this position. You've reached the map's limits."
+      new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.BOUNDARY)
     );
   });
   it('Rover - should not move - on a obstacle', () => {
@@ -178,7 +178,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      'You cannot move to this position. You encounter an obstacle.'
+      new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.OBSTACLE)
     );
   });
   it('Rover - should turn left - from south to east', () => {

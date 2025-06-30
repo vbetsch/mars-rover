@@ -1,4 +1,5 @@
 import { Point } from '@app/domain/point';
+import { NegativeCoordinateError } from '@app/errors/negative-coordinate.error';
 
 describe('Point', () => {
   it('Point - should have x and y', () => {
@@ -9,11 +10,20 @@ describe('Point', () => {
     expect(point.y).toStrictEqual(params.y);
   });
   it('Point - x and y should be positive', () => {
-    const errorMessage: string = 'Coordinates must be non-negative';
-    expect(() => new Point.Class({ x: -1, y: 0 })).toThrow(errorMessage);
-    expect(() => new Point.Class({ x: -1, y: 1 })).toThrow(errorMessage);
-    expect(() => new Point.Class({ x: 0, y: -1 })).toThrow(errorMessage);
-    expect(() => new Point.Class({ x: 1, y: -1 })).toThrow(errorMessage);
-    expect(() => new Point.Class({ x: -1, y: -1 })).toThrow(errorMessage);
+    expect(() => new Point.Class({ x: -1, y: 0 })).toThrow(
+      new NegativeCoordinateError()
+    );
+    expect(() => new Point.Class({ x: -1, y: 1 })).toThrow(
+      new NegativeCoordinateError()
+    );
+    expect(() => new Point.Class({ x: 0, y: -1 })).toThrow(
+      new NegativeCoordinateError()
+    );
+    expect(() => new Point.Class({ x: 1, y: -1 })).toThrow(
+      new NegativeCoordinateError()
+    );
+    expect(() => new Point.Class({ x: -1, y: -1 })).toThrow(
+      new NegativeCoordinateError()
+    );
   });
 });
