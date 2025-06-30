@@ -24,6 +24,7 @@ coverage: node_modules
 .PHONY: start tests lint format build coverage
 
 # Aliases
+test: tests
 ci: lint coverage
 ci_and_build: ci build
-.PHONY: ci ci_and_build
+.PHONY: test ci ci_and_build
