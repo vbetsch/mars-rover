@@ -6,6 +6,16 @@ export namespace MovementPolicy {
     readonly map: Map.Class;
   };
 
+  export type MoveResult = {
+    readonly allowed: boolean;
+    readonly reason?: MoveResultReasons;
+  };
+
+  export enum MoveResultReasons {
+    BOUNDARY = 1,
+    OBSTACLE = 2,
+  }
+
   export class Class {
     private readonly _map: Map.Class;
 
@@ -36,10 +46,22 @@ export namespace MovementPolicy {
       );
     }
 
-    public isMoveAllowed(position: Point.Class): boolean {
-      return !(
-        this._isOutsideBoundaries(position) || this._isFacedObstacle(position)
-      );
+    public isMoveAllowed(position: Point.Class): MoveResult {
+      if (this._isOutsideBoundaries(position)) {
+        return {
+          allowed: false,
+          reason: MoveResultReasons.BOUNDARY,
+        };
+      }
+      if (this._isFacedObstacle(position)) {
+        return {
+          allowed: false,
+          reason: MoveResultReasons.OBSTACLE,
+        };
+      }
+      return {
+        allowed: true,
+      };
     }
   }
 }

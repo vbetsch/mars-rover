@@ -1,6 +1,6 @@
 import { Map } from '@app/domain/map';
-import { MovementPolicy } from '@app/domain/movement-policy';
 import { Point } from '@app/domain/point';
+import { MovementPolicy } from '@app/domain/movement-policy';
 
 describe('MovementPolicy', () => {
   it('MovementPolicy - should have a map', () => {
@@ -29,7 +29,10 @@ describe('MovementPolicy', () => {
           y: 5,
         })
       )
-    ).toBe(false);
+    ).toStrictEqual({
+      allowed: false,
+      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+    });
   });
   it('MovementPolicy - should not allow to move - only x exceed', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -46,7 +49,10 @@ describe('MovementPolicy', () => {
           y: 2,
         })
       )
-    ).toBe(false);
+    ).toStrictEqual({
+      allowed: false,
+      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+    });
   });
   it('MovementPolicy - should not allow to move - only y exceed', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -63,7 +69,10 @@ describe('MovementPolicy', () => {
           y: 4,
         })
       )
-    ).toBe(false);
+    ).toStrictEqual({
+      allowed: false,
+      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+    });
   });
   it('MovementPolicy - should allow to move - both on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -80,7 +89,9 @@ describe('MovementPolicy', () => {
           y: 3,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should allow to move - y is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -97,7 +108,9 @@ describe('MovementPolicy', () => {
           y: 3,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should allow to move - x is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -114,7 +127,9 @@ describe('MovementPolicy', () => {
           y: 2,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should allow to move - normal case', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -131,7 +146,9 @@ describe('MovementPolicy', () => {
           y: 2,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should not allow to move - exactly on a obstacle', () => {
     const obstaclePosition: Point.Class = new Point.Class({
@@ -146,7 +163,10 @@ describe('MovementPolicy', () => {
       }),
     });
 
-    expect(policy.isMoveAllowed(obstaclePosition)).toBe(false);
+    expect(policy.isMoveAllowed(obstaclePosition)).toStrictEqual({
+      allowed: false,
+      reason: MovementPolicy.MoveResultReasons.OBSTACLE,
+    });
   });
   it('MovementPolicy - should allow to move - just x same as obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -169,7 +189,9 @@ describe('MovementPolicy', () => {
           y: 3,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should allow to move - just y same as obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -192,7 +214,9 @@ describe('MovementPolicy', () => {
           y: 2,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
   it('MovementPolicy - should allow to move - not on a obstacle', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
@@ -215,6 +239,8 @@ describe('MovementPolicy', () => {
           y: 3,
         })
       )
-    ).toBe(true);
+    ).toStrictEqual({
+      allowed: true,
+    });
   });
 });
