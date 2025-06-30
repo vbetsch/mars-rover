@@ -8,10 +8,10 @@ export namespace MovementPolicy {
 
   export type MoveResult = {
     readonly allowed: boolean;
-    readonly reason?: MoveResultReasons;
+    readonly reason?: MoveResultReasonsEnum;
   };
 
-  export enum MoveResultReasons {
+  export enum MoveResultReasonsEnum {
     BOUNDARY = 1,
     OBSTACLE = 2,
   }
@@ -50,13 +50,13 @@ export namespace MovementPolicy {
       if (this._isOutsideBoundaries(position))
         return {
           allowed: false,
-          reason: MoveResultReasons.BOUNDARY,
+          reason: MoveResultReasonsEnum.BOUNDARY,
         };
 
       if (this._isFacedObstacle(position))
         return {
           allowed: false,
-          reason: MoveResultReasons.OBSTACLE,
+          reason: MoveResultReasonsEnum.OBSTACLE,
         };
 
       return {

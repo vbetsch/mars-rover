@@ -31,7 +31,7 @@ describe('MovementPolicy', () => {
       )
     ).toStrictEqual({
       allowed: false,
-      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+      reason: MovementPolicy.MoveResultReasonsEnum.BOUNDARY,
     });
   });
   it('MovementPolicy - should not allow to move - BOUNDARY - only x exceed', () => {
@@ -51,7 +51,7 @@ describe('MovementPolicy', () => {
       )
     ).toStrictEqual({
       allowed: false,
-      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+      reason: MovementPolicy.MoveResultReasonsEnum.BOUNDARY,
     });
   });
   it('MovementPolicy - should not allow to move - BOUNDARY - only y exceed', () => {
@@ -71,7 +71,7 @@ describe('MovementPolicy', () => {
       )
     ).toStrictEqual({
       allowed: false,
-      reason: MovementPolicy.MoveResultReasons.BOUNDARY,
+      reason: MovementPolicy.MoveResultReasonsEnum.BOUNDARY,
     });
   });
   it('MovementPolicy - should allow to move - BOUNDARY - both on the boundary', () => {
@@ -165,7 +165,7 @@ describe('MovementPolicy', () => {
 
     expect(policy.isMoveAllowed(obstaclePosition)).toStrictEqual({
       allowed: false,
-      reason: MovementPolicy.MoveResultReasons.OBSTACLE,
+      reason: MovementPolicy.MoveResultReasonsEnum.OBSTACLE,
     });
   });
   it('MovementPolicy - should allow to move - OBSTACLE - just x same as obstacle', () => {
