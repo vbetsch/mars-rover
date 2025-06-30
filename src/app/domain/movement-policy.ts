@@ -1,4 +1,5 @@
 import { Map } from '@app/domain/map';
+import { Point } from '@app/domain/point';
 
 export namespace MovementPolicy {
   export type Params = {
@@ -14,6 +15,15 @@ export namespace MovementPolicy {
 
     public get map(): Map.Class {
       return this._map;
+    }
+
+    public isOutsideBorders(position: Point.Class): boolean {
+      return position.x > this._map.height || position.y > this._map.width;
+    }
+
+    public isMoveAllowed(position: Point.Class): boolean {
+      // TODO: add isFacedObstacle rule
+      return !this.isOutsideBorders(position);
     }
   }
 }
