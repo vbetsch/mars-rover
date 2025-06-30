@@ -2,6 +2,8 @@ import { Rover } from '@app/domain/rover';
 import { Point } from '@app/domain/point';
 import { Compass } from '@app/domain/compass';
 import { CardinalPoint } from '@app/domain/cardinal-point';
+import { MovementPolicy } from '@app/domain/movement-policy';
+import { Map } from '@app/domain/map';
 
 function _displayDirection(direction: CardinalPoint.Class): string {
   switch (direction) {
@@ -26,6 +28,12 @@ console.log('Hello World!');
 
 console.log('Creating a Rover...');
 const rover: Rover.Class = new Rover.Class({
+  movementPolicy: new MovementPolicy.Class({
+    map: new Map.Class({
+      height: 5,
+      width: 5,
+    }),
+  }),
   startingPoint: new Point.Class({ x: 0, y: 0 }),
   direction: Compass.Instance.getCardinalPoint(Compass.CardinalPointEnum.EAST),
 });
