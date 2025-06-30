@@ -65,7 +65,7 @@ describe('MovementPolicy', () => {
       )
     ).toBe(false);
   });
-  it('MovementPolicy - should allow to move - both on the border', () => {
+  it('MovementPolicy - should allow to move - both on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -82,7 +82,7 @@ describe('MovementPolicy', () => {
       )
     ).toBe(true);
   });
-  it('MovementPolicy - should allow to move - y is on the border', () => {
+  it('MovementPolicy - should allow to move - y is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
@@ -99,7 +99,7 @@ describe('MovementPolicy', () => {
       )
     ).toBe(true);
   });
-  it('MovementPolicy - should allow to move - x is on the border', () => {
+  it('MovementPolicy - should allow to move - x is on the boundary', () => {
     const policy: MovementPolicy.Class = new MovementPolicy.Class({
       map: new Map.Class({
         height: 3,
