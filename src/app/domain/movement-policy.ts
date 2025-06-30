@@ -47,18 +47,18 @@ export namespace MovementPolicy {
     }
 
     public isMoveAllowed(position: Point.Class): MoveResult {
-      if (this._isOutsideBoundaries(position)) {
+      if (this._isOutsideBoundaries(position))
         return {
           allowed: false,
           reason: MoveResultReasons.BOUNDARY,
         };
-      }
-      if (this._isFacedObstacle(position)) {
+
+      if (this._isFacedObstacle(position))
         return {
           allowed: false,
           reason: MoveResultReasons.OBSTACLE,
         };
-      }
+
       return {
         allowed: true,
       };

@@ -33,27 +33,18 @@ export namespace Rover {
     public moveForward(): void {
       let xReached: number = this._currentPosition.x;
       let yReached: number = this._currentPosition.y;
-      if (this._currentDirection.mustIncrementX) {
-        xReached += 1;
-      }
-      if (this._currentDirection.mustDecrementX) {
-        xReached -= 1;
-      }
-      if (this._currentDirection.mustIncrementY) {
-        yReached += 1;
-      }
-      if (this._currentDirection.mustDecrementY) {
-        yReached -= 1;
-      }
+      if (this._currentDirection.mustIncrementX) xReached += 1;
+      if (this._currentDirection.mustDecrementX) xReached -= 1;
+      if (this._currentDirection.mustIncrementY) yReached += 1;
+      if (this._currentDirection.mustDecrementY) yReached -= 1;
       const newPosition = new Point.Class({
         x: xReached,
         y: yReached,
       });
       const isMoveAllowedResult: MovementPolicy.MoveResult =
         this._movementPolicy.isMoveAllowed(newPosition);
-      if (!isMoveAllowedResult.allowed) {
+      if (!isMoveAllowedResult.allowed)
         throw new CannotMoveError(isMoveAllowedResult.reason);
-      }
       this._currentPosition = newPosition;
     }
 

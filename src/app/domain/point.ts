@@ -11,9 +11,7 @@ export namespace Point {
     private readonly _y: number;
 
     public constructor(params: Params) {
-      if (params.x < 0 || params.y < 0) {
-        throw new NegativeCoordinateError();
-      }
+      if (params.x < 0 || params.y < 0) throw new NegativeCoordinateError();
 
       this._x = params.x;
       this._y = params.y;

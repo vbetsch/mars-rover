@@ -44,9 +44,8 @@ export namespace Map {
                   this._areSameCoordinate(x, obstaclePosition.x) &&
                   this._areSameCoordinate(y, obstaclePosition.y)
               )
-            ) {
+            )
               return Values.OBSTACLE;
-            }
           }
           return Values.NOTHING;
         })

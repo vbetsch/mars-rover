@@ -23,9 +23,8 @@ export namespace Compass {
 
     private _getCardinalPointByIndex(index: number): CardinalPoint.Class {
       let indexToFind: number = index;
-      if (indexToFind < 0) {
-        indexToFind += this._cardinalPoints.length;
-      }
+      if (indexToFind < 0) indexToFind += this._cardinalPoints.length;
+
       return this._cardinalPoints[indexToFind % this._cardinalPoints.length];
     }
 
