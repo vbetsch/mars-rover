@@ -21,9 +21,20 @@ export namespace MovementPolicy {
       return position.x > this._map.height || position.y > this._map.width;
     }
 
+    public isFacedObstacle(position: Point.Class): boolean {
+      return (
+        this._map.obstaclesPositions?.some(
+          (positionObstacle) =>
+            position.x === positionObstacle.x &&
+            position.y === positionObstacle.y
+        ) ?? false
+      );
+    }
+
     public isMoveAllowed(position: Point.Class): boolean {
-      // TODO: add isFacedObstacle rule
-      return !this.isOutsideBorders(position);
+      return !(
+        this.isOutsideBorders(position) || this.isFacedObstacle(position)
+      );
     }
   }
 }
