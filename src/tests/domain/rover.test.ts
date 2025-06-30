@@ -143,7 +143,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      MovementPolicy.MoveResultReasons.BOUNDARY
+      "You cannot move to this position. You've reached the map's limits."
     );
   });
   it('Rover - should not move - outside borders - y', () => {
@@ -160,7 +160,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      MovementPolicy.MoveResultReasons.BOUNDARY
+      "You cannot move to this position. You've reached the map's limits."
     );
   });
   it('Rover - should not move - on a obstacle', () => {
@@ -178,7 +178,7 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      MovementPolicy.MoveResultReasons.OBSTACLE
+      'You cannot move to this position. You encounter an obstacle.'
     );
   });
   it('Rover - should turn left - from south to east', () => {
