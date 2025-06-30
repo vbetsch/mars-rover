@@ -4,6 +4,7 @@ import { Compass } from '@app/domain/compass';
 import { CardinalPoint } from '@app/domain/cardinal-point';
 import { MovementPolicy } from '@app/domain/movement-policy';
 import { Map } from '@app/domain/map';
+import { CannotMoveError } from '@app/errors/cannot-move.error';
 
 function _displayDirection(direction: CardinalPoint.Class): string {
   switch (direction) {
@@ -24,6 +25,16 @@ function displayRover(rover: Rover.Class): string {
   return `direction: ${_displayDirection(rover.direction)}  |  position: ${rover.position.x},${rover.position.y}`;
 }
 
+function moveForward(rover: Rover.Class): void {
+  try {
+    rover.moveForward();
+  } catch (error: unknown) {
+    if (error instanceof CannotMoveError) {
+      console.error(error.message);
+    }
+  }
+}
+
 console.log('Hello World!');
 
 console.log('Creating a Rover...');
@@ -41,7 +52,7 @@ console.log('\nYour Rover is created !');
 console.log(displayRover(rover));
 
 console.log('\nYour Rover is moving forward...');
-rover.moveForward();
+moveForward(rover);
 console.log(displayRover(rover));
 
 console.log('\nYour Rover is turning left...');
@@ -49,7 +60,7 @@ rover.turnLeft();
 console.log(displayRover(rover));
 
 console.log('\nYour Rover is moving forward...');
-rover.moveForward();
+moveForward(rover);
 console.log(displayRover(rover));
 
 console.log('\nYour Rover is turning right...');
@@ -57,5 +68,21 @@ rover.turnRight();
 console.log(displayRover(rover));
 
 console.log('\nYour Rover is moving forward...');
-rover.moveForward();
+moveForward(rover);
+console.log(displayRover(rover));
+
+console.log('\nYour Rover is moving forward...');
+moveForward(rover);
+console.log(displayRover(rover));
+
+console.log('\nYour Rover is moving forward...');
+moveForward(rover);
+console.log(displayRover(rover));
+
+console.log('\nYour Rover is moving forward...');
+moveForward(rover);
+console.log(displayRover(rover));
+
+console.log('\nYour Rover is moving forward...');
+moveForward(rover);
 console.log(displayRover(rover));
