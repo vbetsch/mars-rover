@@ -11,10 +11,9 @@ export namespace MovementPolicy {
     readonly reason?: MoveResultReasons;
   };
 
-  // TODO: use numbers
   export enum MoveResultReasons {
-    BOUNDARY = 'BOUNDARY',
-    OBSTACLE = 'OBSTACLE',
+    BOUNDARY = 1,
+    OBSTACLE = 2,
   }
 
   export class Class {

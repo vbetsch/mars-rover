@@ -2,6 +2,7 @@ import { Point } from '@app/domain/point';
 import { Compass } from '@app/domain/compass';
 import { CardinalPoint } from '@app/domain/cardinal-point';
 import { MovementPolicy } from '@app/domain/movement-policy';
+import { CannotMoveError } from '@app/errors/cannot-move.error';
 
 export namespace Rover {
   export type Params = {
@@ -51,7 +52,7 @@ export namespace Rover {
       const isMoveAllowedResult: MovementPolicy.MoveResult =
         this._movementPolicy.isMoveAllowed(newPosition);
       if (!isMoveAllowedResult.allowed) {
-        throw new Error(isMoveAllowedResult.reason);
+        throw new CannotMoveError(isMoveAllowedResult.reason);
       }
       this._currentPosition = newPosition;
     }
