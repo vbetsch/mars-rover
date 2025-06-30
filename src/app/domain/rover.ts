@@ -13,17 +13,25 @@ export namespace Rover {
 
   export class Class {
     private readonly _movementPolicy: MovementPolicy.Class;
-    private _currentPosition: Point.Class;
+    private _currentPosition!: Point.Class;
     private _currentDirection: CardinalPoint.Class;
 
     public constructor(params: Params) {
       this._movementPolicy = params.movementPolicy;
-      this._currentPosition = params.startingPoint;
       this._currentDirection = params.direction;
+      this.position = params.startingPoint;
     }
 
     public get position(): Point.Class {
       return this._currentPosition;
+    }
+
+    private set position(value: Point.Class) {
+      const isMoveAllowedResult: MovementPolicy.MoveResult =
+        this._movementPolicy.isMoveAllowed(value);
+      if (!isMoveAllowedResult.allowed)
+        throw new CannotMoveError(isMoveAllowedResult.reason);
+      this._currentPosition = value;
     }
 
     public get direction(): CardinalPoint.Class {
@@ -37,15 +45,10 @@ export namespace Rover {
       if (this._currentDirection.mustDecrementX) xReached -= 1;
       if (this._currentDirection.mustIncrementY) yReached += 1;
       if (this._currentDirection.mustDecrementY) yReached -= 1;
-      const newPosition = new Point.Class({
+      this.position = new Point.Class({
         x: xReached,
         y: yReached,
       });
-      const isMoveAllowedResult: MovementPolicy.MoveResult =
-        this._movementPolicy.isMoveAllowed(newPosition);
-      if (!isMoveAllowedResult.allowed)
-        throw new CannotMoveError(isMoveAllowedResult.reason);
-      this._currentPosition = newPosition;
     }
 
     public turnLeft(): void {
