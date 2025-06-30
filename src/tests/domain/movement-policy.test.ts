@@ -1,4 +1,5 @@
 import { Map } from '@app/domain/map';
+import { MovementPolicy } from '@app/domain/movement-policy';
 
 describe('MovementPolicy', () => {
   it('MovementPolicy - should have a map', () => {
