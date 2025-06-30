@@ -10,7 +10,7 @@ tests: node_modules
 	npm test
 
 lint: node_modules
-	npm run lint
+	npm run lint:strict
 
 format: node_modules
 	npm run format
@@ -26,5 +26,5 @@ coverage: node_modules
 # Aliases
 test: tests
 ci: lint coverage
-ci_and_build: ci build
-.PHONY: test ci ci_and_build
+ci_build: ci build
+.PHONY: test ci ci_build
