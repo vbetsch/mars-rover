@@ -17,7 +17,7 @@ export namespace MovementPolicy {
       return this._map;
     }
 
-    public isOutsideBorders(position: Point.Class): boolean {
+    private _isOutsideBorders(position: Point.Class): boolean {
       return (
         position.x < 0 ||
         position.y < 0 ||
@@ -26,7 +26,7 @@ export namespace MovementPolicy {
       );
     }
 
-    public isFacedObstacle(position: Point.Class): boolean {
+    private _isFacedObstacle(position: Point.Class): boolean {
       return (
         this._map.obstaclesPositions?.some(
           (positionObstacle) =>
@@ -38,7 +38,7 @@ export namespace MovementPolicy {
 
     public isMoveAllowed(position: Point.Class): boolean {
       return !(
-        this.isOutsideBorders(position) || this.isFacedObstacle(position)
+        this._isOutsideBorders(position) || this._isFacedObstacle(position)
       );
     }
   }
