@@ -3,20 +3,30 @@ import { MovementPolicy } from '@app/domain/movement-policy';
 
 describe('CannotMoveError', () => {
   it('CannotMoveError - should throw boundary error', () => {
-    expect(() => {
-      throw new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.BOUNDARY);
-    }).toThrow(
+    const reason = MovementPolicy.MoveResultReasonsEnum.BOUNDARY;
+    const error: CannotMoveError = new CannotMoveError(reason);
+    expect(error).toBeInstanceOf(Error);
+    expect(error.name).toBeInstanceOf('CannotMoveError');
+    expect(error.reason).toBe(reason);
+    expect(error.message).toBeInstanceOf(
       "You cannot move to this position. You've reached the map's limits."
     );
   });
   it('CannotMoveError - should throw obstacle error', () => {
-    expect(() => {
-      throw new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.OBSTACLE);
-    }).toThrow('You cannot move to this position. You encounter an obstacle.');
+    const reason = MovementPolicy.MoveResultReasonsEnum.OBSTACLE;
+    const error: CannotMoveError = new CannotMoveError(reason);
+    expect(error).toBeInstanceOf(Error);
+    expect(error.name).toBeInstanceOf('CannotMoveError');
+    expect(error.reason).toBe(reason);
+    expect(error.message).toBeInstanceOf(
+      'You cannot move to this position. You encounter an obstacle.'
+    );
   });
   it('CannotMoveError - should throw default error', () => {
-    expect(() => {
-      throw new CannotMoveError();
-    }).toThrow('You cannot move to this position.');
+    const error: CannotMoveError = new CannotMoveError();
+    expect(error).toBeInstanceOf(Error);
+    expect(error.name).toBeInstanceOf('CannotMoveError');
+    expect(error.reason).toBeUndefined();
+    expect(error.message).toBeInstanceOf('You cannot move to this position.');
   });
 });
