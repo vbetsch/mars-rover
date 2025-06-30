@@ -10,6 +10,12 @@ describe('Rover', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.EAST;
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
@@ -21,6 +27,12 @@ describe('Rover', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.NORTH;
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 1, y: 1 }),
       direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
@@ -34,6 +46,12 @@ describe('Rover', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.EAST;
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 1, y: 1 }),
       direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
@@ -47,6 +65,12 @@ describe('Rover', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.SOUTH;
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 1, y: 1 }),
       direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
@@ -60,6 +84,12 @@ describe('Rover', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.WEST;
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 1, y: 1 }),
       direction: Compass.Instance.getCardinalPoint(cardinalPointValue),
     });
@@ -73,6 +103,12 @@ describe('Rover', () => {
     const errorMessage: string = 'Coordinates must be non-negative';
 
     let rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 0, y: 0 }),
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.SOUTH
@@ -80,6 +116,12 @@ describe('Rover', () => {
     });
     expect(() => rover.moveForward()).toThrow(errorMessage);
     rover = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: new Point.Class({ x: 0, y: 0 }),
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.WEST
@@ -136,12 +178,18 @@ describe('Rover', () => {
       ),
     });
     expect(() => rover.moveForward()).toThrow(
-      MovementPolicy.MoveResultReasons.BOUNDARY
+      MovementPolicy.MoveResultReasons.OBSTACLE
     );
   });
   it('Rover - should turn left - from south to east', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.SOUTH
@@ -156,6 +204,12 @@ describe('Rover', () => {
   it('Rover - should turn left - from east to north', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.EAST
@@ -172,6 +226,12 @@ describe('Rover', () => {
   it('Rover - should turn left - from north to west', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.NORTH
@@ -186,6 +246,12 @@ describe('Rover', () => {
   it('Rover - should turn left - from west to south', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.WEST
@@ -202,6 +268,12 @@ describe('Rover', () => {
   it('Rover - should turn right - from south to west', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.SOUTH
@@ -216,6 +288,12 @@ describe('Rover', () => {
   it('Rover - should turn right - from west to north', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.WEST
@@ -232,6 +310,12 @@ describe('Rover', () => {
   it('Rover - should turn right - from north to east', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.NORTH
@@ -246,6 +330,12 @@ describe('Rover', () => {
   it('Rover - should turn right - from east to south', () => {
     const point: Point.Class = new Point.Class({ x: 0, y: 0 });
     const rover: Rover.Class = new Rover.Class({
+      movementPolicy: new MovementPolicy.Class({
+        map: new Map.Class({
+          height: 3,
+          width: 3,
+        }),
+      }),
       startingPoint: point,
       direction: Compass.Instance.getCardinalPoint(
         Compass.CardinalPointEnum.EAST
