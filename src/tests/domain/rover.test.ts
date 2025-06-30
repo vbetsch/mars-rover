@@ -25,6 +25,72 @@ describe('Rover', () => {
     expect(rover.position).toStrictEqual(point);
     expect(rover.direction.value).toStrictEqual(cardinalPointValue);
   });
+  it('Rover - should not have a bad starting point - negative values', () => {
+    expect(
+      () =>
+        new Rover.Class({
+          movementPolicy: new MovementPolicy.Class({
+            map: new Map.Class({
+              height: 3,
+              width: 3,
+            }),
+          }),
+          direction: Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.NORTH
+          ),
+          startingPoint: new Point.Class({
+            x: -1,
+            y: -1,
+          }),
+        })
+    ).toThrow(new NegativeCoordinateError());
+  });
+  it('Rover - should not have a bad starting point - outside boundary', () => {
+    expect(
+      () =>
+        new Rover.Class({
+          movementPolicy: new MovementPolicy.Class({
+            map: new Map.Class({
+              height: 3,
+              width: 3,
+            }),
+          }),
+          direction: Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.NORTH
+          ),
+          startingPoint: new Point.Class({
+            x: 4,
+            y: 4,
+          }),
+        })
+    ).toThrow(
+      new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.BOUNDARY)
+    );
+  });
+  it('Rover - should not have a bad starting point - face of obstacle ', () => {
+    const obstaclePosition: Point.Class = new Point.Class({
+      x: 2,
+      y: 2,
+    });
+    expect(
+      () =>
+        new Rover.Class({
+          movementPolicy: new MovementPolicy.Class({
+            map: new Map.Class({
+              height: 3,
+              width: 3,
+              obstaclesPositions: [obstaclePosition],
+            }),
+          }),
+          direction: Compass.Instance.getCardinalPoint(
+            Compass.CardinalPointEnum.NORTH
+          ),
+          startingPoint: obstaclePosition,
+        })
+    ).toThrow(
+      new CannotMoveError(MovementPolicy.MoveResultReasonsEnum.OBSTACLE)
+    );
+  });
   it('Rover - should move to north', () => {
     const cardinalPointValue: Compass.CardinalPointEnum =
       Compass.CardinalPointEnum.NORTH;
