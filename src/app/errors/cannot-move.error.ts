@@ -1,6 +1,8 @@
 import { MovementPolicy } from '@app/domain/movement-policy';
 
 export class CannotMoveError extends Error {
+  public readonly reason?: MovementPolicy.MoveResultReasonsEnum;
+
   public constructor(reason?: MovementPolicy.MoveResultReasonsEnum) {
     let errorMessage: string = 'You cannot move to this position.';
     switch (reason) {
@@ -15,5 +17,6 @@ export class CannotMoveError extends Error {
     }
     super(errorMessage);
     this.name = 'CannotMoveError';
+    this.reason = reason;
   }
 }
