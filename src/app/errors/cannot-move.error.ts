@@ -10,8 +10,6 @@ export class CannotMoveError extends Error {
       case MovementPolicy.MoveResultReasonsEnum.OBSTACLE:
         errorMessage += ' You encounter an obstacle.';
         break;
-      default:
-        break;
     }
     super(errorMessage);
     this.name = 'CannotMoveError';
