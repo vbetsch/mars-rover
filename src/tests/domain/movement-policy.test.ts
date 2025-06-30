@@ -116,4 +116,21 @@ describe('MovementPolicy', () => {
       )
     ).toBe(true);
   });
+  it('MovementPolicy - should allow to move - normal case', () => {
+    const policy: MovementPolicy.Class = new MovementPolicy.Class({
+      map: new Map.Class({
+        height: 3,
+        width: 3,
+      }),
+    });
+
+    expect(
+      policy.isMoveAllowed(
+        new Point.Class({
+          x: 2,
+          y: 2,
+        })
+      )
+    ).toBe(true);
+  });
 });
