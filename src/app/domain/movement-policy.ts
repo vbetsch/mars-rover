@@ -18,7 +18,12 @@ export namespace MovementPolicy {
     }
 
     public isOutsideBorders(position: Point.Class): boolean {
-      return position.x > this._map.height || position.y > this._map.width;
+      return (
+        position.x < 0 ||
+        position.y < 0 ||
+        position.x > this._map.height ||
+        position.y > this._map.width
+      );
     }
 
     public isFacedObstacle(position: Point.Class): boolean {
