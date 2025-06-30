@@ -26,6 +26,7 @@ function displayRover(rover: Rover.Class): string {
 }
 
 function moveForward(rover: Rover.Class): void {
+  console.log('\nYour Rover is moving forward...');
   try {
     rover.moveForward();
   } catch (error: unknown) {
@@ -33,6 +34,19 @@ function moveForward(rover: Rover.Class): void {
       console.error(error.message);
     }
   }
+  console.log(displayRover(rover));
+}
+
+function turnRight(rover: Rover.Class): void {
+  console.log('\nYour Rover is turning right...');
+  rover.turnRight();
+  console.log(displayRover(rover));
+}
+
+function turnLeft(rover: Rover.Class): void {
+  console.log('\nYour Rover is turning left...');
+  rover.turnLeft();
+  console.log(displayRover(rover));
 }
 
 console.log('Hello World!');
@@ -51,38 +65,12 @@ const rover: Rover.Class = new Rover.Class({
 console.log('\nYour Rover is created !');
 console.log(displayRover(rover));
 
-console.log('\nYour Rover is moving forward...');
 moveForward(rover);
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is turning left...');
-rover.turnLeft();
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
+turnLeft(rover);
 moveForward(rover);
-console.log(displayRover(rover));
+turnRight(rover);
 
-console.log('\nYour Rover is turning right...');
-rover.turnRight();
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
-moveForward(rover);
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
-moveForward(rover);
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
-moveForward(rover);
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
-moveForward(rover);
-console.log(displayRover(rover));
-
-console.log('\nYour Rover is moving forward...');
-moveForward(rover);
-console.log(displayRover(rover));
+const POINTS_BEFORE_REACHING_BOUNDARIES: number = 5;
+for (let i = 0; i < POINTS_BEFORE_REACHING_BOUNDARIES; i++) {
+  moveForward(rover);
+}
