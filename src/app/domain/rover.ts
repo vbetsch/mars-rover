@@ -19,14 +19,14 @@ export namespace Rover {
     public constructor(params: Params) {
       this._movementPolicy = params.movementPolicy;
       this._currentDirection = params.direction;
-      this.position = params.startingPoint;
+      this.setPosition(params.startingPoint);
     }
 
     public get position(): Point.Class {
       return this._currentPosition;
     }
 
-    private set position(value: Point.Class) {
+    private setPosition(value: Point.Class) {
       const isMoveAllowedResult: MovementPolicy.MoveResult =
         this._movementPolicy.isMoveAllowed(value);
       if (!isMoveAllowedResult.allowed)
@@ -45,10 +45,10 @@ export namespace Rover {
       if (this._currentDirection.mustDecrementX) xReached -= 1;
       if (this._currentDirection.mustIncrementY) yReached += 1;
       if (this._currentDirection.mustDecrementY) yReached -= 1;
-      this.position = new Point.Class({
+      this.setPosition(new Point.Class({
         x: xReached,
         y: yReached,
-      });
+      }));
     }
 
     public turnLeft(): void {
