@@ -26,7 +26,7 @@ export namespace Rover {
       return this._currentPosition;
     }
 
-    private setPosition(value: Point.Class) {
+    private setPosition(value: Point.Class): void {
       const isMoveAllowedResult: MovementPolicy.MoveResult =
         this._movementPolicy.isMoveAllowed(value);
       if (!isMoveAllowedResult.allowed)
