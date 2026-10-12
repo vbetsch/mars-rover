@@ -45,10 +45,12 @@ export namespace Rover {
       if (this._currentDirection.mustDecrementX) xReached -= 1;
       if (this._currentDirection.mustIncrementY) yReached += 1;
       if (this._currentDirection.mustDecrementY) yReached -= 1;
-      this.setPosition(new Point.Class({
-        x: xReached,
-        y: yReached,
-      }));
+      this.setPosition(
+        new Point.Class({
+          x: xReached,
+          y: yReached,
+        })
+      );
     }
 
     public turnLeft(): void {
